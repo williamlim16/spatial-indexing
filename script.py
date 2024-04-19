@@ -34,14 +34,15 @@ def gen_report(cursor):
     print("3. For test case 3")  # Simulate function output.
     selection = int(input("Please enter your selection number: "))
     system("clear")  # clears stdout
+    repetition = 5
     if selection == 0 or selection == None:
-        generate_report(cursor=cursor, case=None)
+        generate_report(cursor=cursor, case=None, repetition=repetition)
     elif selection == 1:
-        generate_report(cursor=cursor, case=1)
+        generate_report(cursor=cursor, case=1, repetition=repetition)
     elif selection == 2:
-        generate_report(cursor=cursor, case=2)
+        generate_report(cursor=cursor, case=2, repetition=repetition)
     elif selection == 3:
-        generate_report(cursor=cursor, case=3)
+        generate_report(cursor=cursor, case=3, repetition=repetition)
     else:
         print("Invalid option!")
         system("clear")

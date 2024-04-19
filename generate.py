@@ -7,11 +7,11 @@ from test_cases import test_cases
 from alive_progress import alive_bar
 
 
-def generate_report(cursor, case: int | None):
+def generate_report(cursor, case: int | None, repetition: int):
     output_file = "output.sql"
     bar = bar_factory("🔥", tip="🌟")
     logging.basicConfig(level=logging.INFO)
-    bar_length = len(test_cases)
+    bar_length = len(test_cases * repetition)
     if case == 1:
         output_file = "1_out.sql"
         bar_length = bar_length / 3
@@ -35,20 +35,23 @@ def generate_report(cursor, case: int | None):
 
                 if case == 3 and test["test_case"][0] != "3":
                     continue
-                cursor.execute(test["query"])
-                q_res = cursor.fetchall()
-                q_res = tabulate(q_res)
-                cursor.execute("EXPLAIN ANALYZE " + test["query"])
-                q_analyze = cursor.fetchall()
-                q_analyze = tabulate(q_analyze)
-                template_output = TemplateOutput(
-                    query=test["query"],
-                    query_result=q_res,
-                    query_analyze=q_analyze,
-                    test_case=test["test_case"],
-                    test_case_index=test["test_case_index"],
-                )
-                # print(template_output.return_format())
-                f.write(template_output.return_format())
-                logging.info(f"Test Case: {test['test_case']}")
+
+                for rep in range(repetition):
+                    cursor.execute(test["query"])
+                    q_res = cursor.fetchall()
+                    q_res = tabulate(q_res)
+                    cursor.execute("EXPLAIN (BUFFERS, ANALYZE) " + test["query"])
+                    q_analyze = cursor.fetchall()
+                    q_analyze = tabulate(q_analyze)
+                    template_output = TemplateOutput(
+                        query=test["query"],
+                        query_result=q_res,
+                        query_analyze=q_analyze,
+                        test_case=test["test_case"],
+                        test_case_index=test["test_case_index"],
+                    )
+                    # print(template_output.return_format())
+                    f.write(template_output.return_format())
+                    logging.info(f"Test Case: {test['test_case']} Repetition: {rep+1}")
+                    bar()
                 bar()
