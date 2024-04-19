@@ -1,40 +1,48 @@
 import re
-from alive_progress.animations.bars import bar_factory
-from alive_progress.core.progress import config_handler
 import pandas as pd
 import psycopg2
+import logging
+from alive_progress.animations.bars import bar_factory
+from alive_progress.core.progress import config_handler
 from tabulate import tabulate
 from template import TemplateOutput
 from test_cases import test_cases
 from alive_progress import alive_bar
 
+
 def init_database():
-    connection = psycopg2.connect(user="williamlim", password="", host="127.0.0.1", database="project")
+    connection = psycopg2.connect(
+        user="williamlim", password="", host="127.0.0.1", database="project"
+    )
     cursor = connection.cursor()
     return cursor
+
 
 cursor = init_database()
 
 output_file = "output.sql"
-bar = bar_factory('🔥', tip='🌟')
+bar = bar_factory("🔥", tip="🌟")
+logging.basicConfig(level=logging.INFO)
 
 with open(output_file, "w+") as f:
-    with alive_bar(len(test_cases), bar=bar, spinner='fish') as bar:
+    with alive_bar(len(test_cases), bar=bar, spinner="fish") as bar:
         for test in test_cases:
-            cursor.execute(test['query'])
+            cursor.execute(test["query"])
             q_res = cursor.fetchall()
             q_res = tabulate(q_res)
-            cursor.execute("EXPLAIN ANALYZE "+test['query'])
+            cursor.execute("EXPLAIN ANALYZE " + test["query"])
             q_analyze = cursor.fetchall()
-            q_analyze =tabulate(q_analyze)
+            q_analyze = tabulate(q_analyze)
             template_output = TemplateOutput(
-                query=test['query'],
+                query=test["query"],
                 query_result=q_res,
                 query_analyze=q_analyze,
-                test_case=test['test_case'],
-                test_case_index=test['test_case_index'])
+                test_case=test["test_case"],
+                test_case_index=test["test_case_index"],
+            )
             # print(template_output.return_format())
             f.write(template_output.return_format())
+            logging.info(f"Test Case: {test['test_case']}")
             bar()
 
 # planning = 0

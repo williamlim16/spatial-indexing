@@ -16,13 +16,13 @@ Outputs:
 ----
 Query Plan:
 ----------------------------------------------------------------------------------------------------------------------------------
-Aggregate  (cost=236.21..236.22 rows=1 width=8) (actual time=9.620..9.621 rows=1 loops=1)
-->  Index Scan using start_rtree on taxi_rtree  (cost=0.54..235.78 rows=170 width=0) (actual time=0.101..9.526 rows=4789 loops=1)
+Aggregate  (cost=21.48..21.49 rows=1 width=8) (actual time=7.735..7.736 rows=1 loops=1)
+->  Index Scan using start_rtree on taxi_rtree  (cost=0.54..21.05 rows=170 width=0) (actual time=0.072..7.639 rows=4789 loops=1)
 Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3000'::double precision))
 Filter: st_dwithin('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, start_point, '3000'::double precision, true)
 Rows Removed by Filter: 476
-Planning Time: 11.511 ms
-Execution Time: 9.645 ms
+Planning Time: 0.397 ms
+Execution Time: 7.747 ms
 ----------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -43,13 +43,13 @@ Outputs:
 ----
 Query Plan:
 ----------------------------------------------------------------------------------------------------------------------------------
-Aggregate  (cost=962.98..962.99 rows=1 width=8) (actual time=3.547..3.547 rows=1 loops=1)
-->  Index Scan using start_rtree on taxi_rtree  (cost=0.54..962.55 rows=170 width=0) (actual time=0.066..3.451 rows=4830 loops=1)
+Aggregate  (cost=21.48..21.49 rows=1 width=8) (actual time=3.379..3.379 rows=1 loops=1)
+->  Index Scan using start_rtree on taxi_rtree  (cost=0.54..21.05 rows=170 width=0) (actual time=0.062..3.283 rows=4830 loops=1)
 Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3100'::double precision))
 Filter: st_dwithin('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, start_point, '3100'::double precision, true)
 Rows Removed by Filter: 522
-Planning Time: 0.423 ms
-Execution Time: 3.560 ms
+Planning Time: 0.254 ms
+Execution Time: 3.386 ms
 ----------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -70,13 +70,13 @@ Outputs:
 ----
 Query Plan:
 ----------------------------------------------------------------------------------------------------------------------------------
-Aggregate  (cost=1161.19..1161.20 rows=1 width=8) (actual time=3.649..3.649 rows=1 loops=1)
-->  Index Scan using start_rtree on taxi_rtree  (cost=0.54..1160.76 rows=170 width=0) (actual time=0.068..3.547 rows=4871 loops=1)
+Aggregate  (cost=21.48..21.49 rows=1 width=8) (actual time=3.238..3.238 rows=1 loops=1)
+->  Index Scan using start_rtree on taxi_rtree  (cost=0.54..21.05 rows=170 width=0) (actual time=0.065..3.143 rows=4871 loops=1)
 Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3150'::double precision))
 Filter: st_dwithin('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, start_point, '3150'::double precision, true)
 Rows Removed by Filter: 510
-Planning Time: 0.181 ms
-Execution Time: 3.656 ms
+Planning Time: 0.431 ms
+Execution Time: 3.249 ms
 ----------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -96,21 +96,21 @@ Outputs:
 4789
 ----
 Query Plan:
-------------------------------------------------------------------------------------------------------------------------------------
-Finalize Aggregate  (cost=47342.18..47342.19 rows=1 width=8) (actual time=144.880..147.593 rows=1 loops=1)
-->  Gather  (cost=47341.97..47342.18 rows=2 width=8) (actual time=144.823..147.585 rows=3 loops=1)
+----------------------------------------------------------------------------------------------------------------------------------
+Finalize Aggregate  (cost=47342.18..47342.19 rows=1 width=8) (actual time=107.430..109.892 rows=1 loops=1)
+->  Gather  (cost=47341.97..47342.18 rows=2 width=8) (actual time=107.380..109.890 rows=3 loops=1)
 Workers Planned: 2
 Workers Launched: 2
-->  Partial Aggregate  (cost=46341.97..46341.98 rows=1 width=8) (actual time=136.378..136.378 rows=1 loops=3)
-->  Parallel Bitmap Heap Scan on taxi_quad  (cost=220.41..46341.79 rows=71 width=0) (actual time=130.338..136.339 rows=1596 loops=3)
+->  Partial Aggregate  (cost=46341.97..46341.98 rows=1 width=8) (actual time=96.966..96.967 rows=1 loops=3)
+->  Parallel Bitmap Heap Scan on taxi_quad  (cost=220.41..46341.79 rows=71 width=0) (actual time=91.959..96.928 rows=1596 loops=3)
 Filter: st_dwithin('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, start_point, '3000'::double precision, true)
 Rows Removed by Filter: 159
-Heap Blocks: exact=3420
-->  Bitmap Index Scan on start_quadtree  (cost=0.00..220.37 rows=5311 width=0) (actual time=134.314..134.314 rows=5265 loops=1)
+Heap Blocks: exact=3603
+->  Bitmap Index Scan on start_quadtree  (cost=0.00..220.37 rows=5311 width=0) (actual time=98.156..98.156 rows=5265 loops=1)
 Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3000'::double precision))
-Planning Time: 0.443 ms
-Execution Time: 151.008 ms
-------------------------------------------------------------------------------------------------------------------------------------
+Planning Time: 0.320 ms
+Execution Time: 112.566 ms
+----------------------------------------------------------------------------------------------------------------------------------
 */
 
 /**
@@ -130,19 +130,19 @@ Outputs:
 ----
 Query Plan:
 ------------------------------------------------------------------------------------------------------------------------------------
-Finalize Aggregate  (cost=48636.05..48636.06 rows=1 width=8) (actual time=132.762..135.786 rows=1 loops=1)
-->  Gather  (cost=48635.84..48636.05 rows=2 width=8) (actual time=132.709..135.783 rows=3 loops=1)
+Finalize Aggregate  (cost=48636.05..48636.06 rows=1 width=8) (actual time=113.372..115.962 rows=1 loops=1)
+->  Gather  (cost=48635.84..48636.05 rows=2 width=8) (actual time=113.326..115.959 rows=3 loops=1)
 Workers Planned: 2
 Workers Launched: 2
-->  Partial Aggregate  (cost=47635.84..47635.85 rows=1 width=8) (actual time=126.258..126.259 rows=1 loops=3)
-->  Parallel Bitmap Heap Scan on taxi_quad  (cost=229.56..47635.66 rows=71 width=0) (actual time=116.393..126.219 rows=1610 loops=3)
+->  Partial Aggregate  (cost=47635.84..47635.85 rows=1 width=8) (actual time=107.017..107.018 rows=1 loops=3)
+->  Parallel Bitmap Heap Scan on taxi_quad  (cost=229.56..47635.66 rows=71 width=0) (actual time=101.398..106.976 rows=1610 loops=3)
 Filter: st_dwithin('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, start_point, '3100'::double precision, true)
 Rows Removed by Filter: 174
-Heap Blocks: exact=3570
-->  Bitmap Index Scan on start_quadtree  (cost=0.00..229.52 rows=5464 width=0) (actual time=118.227..118.228 rows=5352 loops=1)
+Heap Blocks: exact=3654
+->  Bitmap Index Scan on start_quadtree  (cost=0.00..229.52 rows=5464 width=0) (actual time=103.289..103.289 rows=5352 loops=1)
 Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3100'::double precision))
-Planning Time: 0.431 ms
-Execution Time: 139.080 ms
+Planning Time: 0.325 ms
+Execution Time: 119.347 ms
 ------------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -162,21 +162,21 @@ Outputs:
 4871
 ----
 Query Plan:
-------------------------------------------------------------------------------------------------------------------------------------
-Finalize Aggregate  (cost=49121.53..49121.54 rows=1 width=8) (actual time=117.058..119.554 rows=1 loops=1)
-->  Gather  (cost=49121.32..49121.53 rows=2 width=8) (actual time=117.007..119.552 rows=3 loops=1)
+----------------------------------------------------------------------------------------------------------------------------------
+Finalize Aggregate  (cost=49121.53..49121.54 rows=1 width=8) (actual time=105.199..107.741 rows=1 loops=1)
+->  Gather  (cost=49121.32..49121.53 rows=2 width=8) (actual time=105.153..107.738 rows=3 loops=1)
 Workers Planned: 2
 Workers Launched: 2
-->  Partial Aggregate  (cost=48121.32..48121.33 rows=1 width=8) (actual time=110.807..110.807 rows=1 loops=3)
-->  Parallel Bitmap Heap Scan on taxi_quad  (cost=229.99..48121.14 rows=71 width=0) (actual time=105.505..110.769 rows=1624 loops=3)
+->  Partial Aggregate  (cost=48121.32..48121.33 rows=1 width=8) (actual time=98.961..98.961 rows=1 loops=3)
+->  Parallel Bitmap Heap Scan on taxi_quad  (cost=229.99..48121.14 rows=71 width=0) (actual time=94.042..98.924 rows=1624 loops=3)
 Filter: st_dwithin('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, start_point, '3150'::double precision, true)
 Rows Removed by Filter: 170
-Heap Blocks: exact=3704
-->  Bitmap Index Scan on start_quadtree  (cost=0.00..229.95 rows=5522 width=0) (actual time=107.197..107.197 rows=5381 loops=1)
+Heap Blocks: exact=3773
+->  Bitmap Index Scan on start_quadtree  (cost=0.00..229.95 rows=5522 width=0) (actual time=95.789..95.789 rows=5381 loops=1)
 Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3150'::double precision))
-Planning Time: 0.334 ms
-Execution Time: 122.594 ms
-------------------------------------------------------------------------------------------------------------------------------------
+Planning Time: 0.375 ms
+Execution Time: 110.453 ms
+----------------------------------------------------------------------------------------------------------------------------------
 */
 
 /**
@@ -195,21 +195,21 @@ Outputs:
 4789
 ----
 Query Plan:
-------------------------------------------------------------------------------------------------------------------------------------
-Finalize Aggregate  (cost=47342.18..47342.19 rows=1 width=8) (actual time=117.780..120.347 rows=1 loops=1)
-->  Gather  (cost=47341.97..47342.18 rows=2 width=8) (actual time=117.725..120.344 rows=3 loops=1)
+----------------------------------------------------------------------------------------------------------------------------------
+Finalize Aggregate  (cost=47342.18..47342.19 rows=1 width=8) (actual time=104.201..106.587 rows=1 loops=1)
+->  Gather  (cost=47341.97..47342.18 rows=2 width=8) (actual time=104.152..106.585 rows=3 loops=1)
 Workers Planned: 2
 Workers Launched: 2
-->  Partial Aggregate  (cost=46341.97..46341.98 rows=1 width=8) (actual time=111.459..111.459 rows=1 loops=3)
-->  Parallel Bitmap Heap Scan on taxi_quad  (cost=220.41..46341.79 rows=71 width=0) (actual time=105.639..111.421 rows=1596 loops=3)
+->  Partial Aggregate  (cost=46341.97..46341.98 rows=1 width=8) (actual time=97.932..97.932 rows=1 loops=3)
+->  Parallel Bitmap Heap Scan on taxi_quad  (cost=220.41..46341.79 rows=71 width=0) (actual time=93.147..97.896 rows=1596 loops=3)
 Filter: st_dwithin('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, start_point, '3000'::double precision, true)
 Rows Removed by Filter: 159
-Heap Blocks: exact=3657
-->  Bitmap Index Scan on start_quadtree  (cost=0.00..220.37 rows=5311 width=0) (actual time=107.178..107.178 rows=5265 loops=1)
+Heap Blocks: exact=3750
+->  Bitmap Index Scan on start_quadtree  (cost=0.00..220.37 rows=5311 width=0) (actual time=94.907..94.907 rows=5265 loops=1)
 Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3000'::double precision))
-Planning Time: 0.374 ms
-Execution Time: 123.489 ms
-------------------------------------------------------------------------------------------------------------------------------------
+Planning Time: 0.324 ms
+Execution Time: 109.348 ms
+----------------------------------------------------------------------------------------------------------------------------------
 */
 
 /**
@@ -228,21 +228,21 @@ Outputs:
 4830
 ----
 Query Plan:
-------------------------------------------------------------------------------------------------------------------------------------
-Finalize Aggregate  (cost=48636.05..48636.06 rows=1 width=8) (actual time=119.197..121.783 rows=1 loops=1)
-->  Gather  (cost=48635.84..48636.05 rows=2 width=8) (actual time=119.137..121.780 rows=3 loops=1)
+----------------------------------------------------------------------------------------------------------------------------------
+Finalize Aggregate  (cost=48636.05..48636.06 rows=1 width=8) (actual time=104.592..107.093 rows=1 loops=1)
+->  Gather  (cost=48635.84..48636.05 rows=2 width=8) (actual time=104.543..107.090 rows=3 loops=1)
 Workers Planned: 2
 Workers Launched: 2
-->  Partial Aggregate  (cost=47635.84..47635.85 rows=1 width=8) (actual time=112.776..112.776 rows=1 loops=3)
-->  Parallel Bitmap Heap Scan on taxi_quad  (cost=229.56..47635.66 rows=71 width=0) (actual time=106.744..112.736 rows=1610 loops=3)
+->  Partial Aggregate  (cost=47635.84..47635.85 rows=1 width=8) (actual time=98.413..98.414 rows=1 loops=3)
+->  Parallel Bitmap Heap Scan on taxi_quad  (cost=229.56..47635.66 rows=71 width=0) (actual time=93.421..98.377 rows=1610 loops=3)
 Filter: st_dwithin('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, start_point, '3100'::double precision, true)
 Rows Removed by Filter: 174
-Heap Blocks: exact=3548
-->  Bitmap Index Scan on start_quadtree  (cost=0.00..229.52 rows=5464 width=0) (actual time=108.557..108.557 rows=5352 loops=1)
+Heap Blocks: exact=3724
+->  Bitmap Index Scan on start_quadtree  (cost=0.00..229.52 rows=5464 width=0) (actual time=95.184..95.184 rows=5352 loops=1)
 Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3100'::double precision))
-Planning Time: 0.397 ms
-Execution Time: 125.007 ms
-------------------------------------------------------------------------------------------------------------------------------------
+Planning Time: 0.383 ms
+Execution Time: 109.881 ms
+----------------------------------------------------------------------------------------------------------------------------------
 */
 
 /**
@@ -261,21 +261,21 @@ Outputs:
 4871
 ----
 Query Plan:
-------------------------------------------------------------------------------------------------------------------------------------
-Finalize Aggregate  (cost=49121.53..49121.54 rows=1 width=8) (actual time=113.148..115.570 rows=1 loops=1)
-->  Gather  (cost=49121.32..49121.53 rows=2 width=8) (actual time=113.102..115.567 rows=3 loops=1)
+----------------------------------------------------------------------------------------------------------------------------------
+Finalize Aggregate  (cost=49121.53..49121.54 rows=1 width=8) (actual time=104.373..106.837 rows=1 loops=1)
+->  Gather  (cost=49121.32..49121.53 rows=2 width=8) (actual time=104.326..106.834 rows=3 loops=1)
 Workers Planned: 2
 Workers Launched: 2
-->  Partial Aggregate  (cost=48121.32..48121.33 rows=1 width=8) (actual time=106.679..106.680 rows=1 loops=3)
-->  Parallel Bitmap Heap Scan on taxi_quad  (cost=229.99..48121.14 rows=71 width=0) (actual time=101.522..106.641 rows=1624 loops=3)
+->  Partial Aggregate  (cost=48121.32..48121.33 rows=1 width=8) (actual time=98.159..98.160 rows=1 loops=3)
+->  Parallel Bitmap Heap Scan on taxi_quad  (cost=229.99..48121.14 rows=71 width=0) (actual time=93.239..98.121 rows=1624 loops=3)
 Filter: st_dwithin('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, start_point, '3150'::double precision, true)
 Rows Removed by Filter: 170
-Heap Blocks: exact=3744
-->  Bitmap Index Scan on start_quadtree  (cost=0.00..229.95 rows=5522 width=0) (actual time=103.538..103.538 rows=5381 loops=1)
+Heap Blocks: exact=3806
+->  Bitmap Index Scan on start_quadtree  (cost=0.00..229.95 rows=5522 width=0) (actual time=94.946..94.946 rows=5381 loops=1)
 Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3150'::double precision))
-Planning Time: 0.356 ms
-Execution Time: 118.690 ms
-------------------------------------------------------------------------------------------------------------------------------------
+Planning Time: 0.332 ms
+Execution Time: 109.556 ms
+----------------------------------------------------------------------------------------------------------------------------------
 */
 
 /**
@@ -300,20 +300,20 @@ Pestana Vintage Porto    1
 ----------------------  --
 Query Plan:
 -------------------------------------------------------------------------------------------------------------------------------
-Sort  (cost=45493.52..45493.56 rows=15 width=29) (actual time=3.988..3.988 rows=4 loops=1)
+Sort  (cost=45432.44..45432.48 rows=15 width=29) (actual time=3.872..3.873 rows=4 loops=1)
 Sort Key: (count(*)) DESC
 Sort Method: quicksort  Memory: 25kB
-->  HashAggregate  (cost=45493.07..45493.22 rows=15 width=29) (actual time=3.986..3.986 rows=4 loops=1)
+->  HashAggregate  (cost=45432.00..45432.15 rows=15 width=29) (actual time=3.870..3.871 rows=4 loops=1)
 Group Key: hotels.hotel
 Batches: 1  Memory Usage: 24kB
-->  Nested Loop  (cost=0.54..45020.56 rows=94503 width=21) (actual time=0.039..3.981 rows=31 loops=1)
-->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.002..0.002 rows=16 loops=1)
-->  Index Scan using end_rtree on taxi_rtree  (cost=0.54..2812.01 rows=170 width=32) (actual time=0.189..0.248 rows=2 loops=16)
+->  Nested Loop  (cost=0.54..45020.56 rows=82288 width=21) (actual time=0.040..3.866 rows=31 loops=1)
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.002..0.003 rows=16 loops=1)
+->  Index Scan using end_rtree on taxi_rtree  (cost=0.54..2812.01 rows=170 width=32) (actual time=0.184..0.241 rows=2 loops=16)
 Index Cond: (end_point && _st_expand(hotels.geom, '1'::double precision))
 Filter: st_dwithin(hotels.geom, end_point, '1'::double precision, true)
 Rows Removed by Filter: 4
-Planning Time: 0.099 ms
-Execution Time: 4.001 ms
+Planning Time: 0.130 ms
+Execution Time: 3.885 ms
 -------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -323,7 +323,7 @@ Execution Time: 4.001 ms
 */
 
         SELECT hotels.hotel, count(*) FROM public.taxi_rtree, public.hotels
-        WHERE ST_DWithin(
+                    WHERE ST_DWithin(
           hotels.geom,
           taxi_rtree.end_point, 3)
         GROUP BY hotel
@@ -346,20 +346,20 @@ BessaHotel Baixa          1
 ----------------------  ---
 Query Plan:
 --------------------------------------------------------------------------------------------------------------------------------
-Sort  (cost=45493.52..45493.56 rows=15 width=29) (actual time=4.583..4.583 rows=11 loops=1)
+Sort  (cost=45432.44..45432.48 rows=15 width=29) (actual time=4.527..4.527 rows=11 loops=1)
 Sort Key: (count(*)) DESC
 Sort Method: quicksort  Memory: 25kB
-->  HashAggregate  (cost=45493.07..45493.22 rows=15 width=29) (actual time=4.580..4.581 rows=11 loops=1)
+->  HashAggregate  (cost=45432.00..45432.15 rows=15 width=29) (actual time=4.524..4.525 rows=11 loops=1)
 Group Key: hotels.hotel
 Batches: 1  Memory Usage: 24kB
-->  Nested Loop  (cost=0.54..45020.56 rows=94503 width=21) (actual time=0.037..4.552 rows=314 loops=1)
+->  Nested Loop  (cost=0.54..45020.56 rows=82288 width=21) (actual time=0.038..4.495 rows=314 loops=1)
 ->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.002..0.002 rows=16 loops=1)
-->  Index Scan using end_rtree on taxi_rtree  (cost=0.54..2812.01 rows=170 width=32) (actual time=0.112..0.283 rows=20 loops=16)
+->  Index Scan using end_rtree on taxi_rtree  (cost=0.54..2812.01 rows=170 width=32) (actual time=0.112..0.280 rows=20 loops=16)
 Index Cond: (end_point && _st_expand(hotels.geom, '3'::double precision))
 Filter: st_dwithin(hotels.geom, end_point, '3'::double precision, true)
 Rows Removed by Filter: 19
-Planning Time: 0.103 ms
-Execution Time: 4.593 ms
+Planning Time: 0.077 ms
+Execution Time: 4.536 ms
 --------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -394,20 +394,20 @@ Eurostars Porto Douro                  1
 -----------------------------------  ---
 Query Plan:
 --------------------------------------------------------------------------------------------------------------------------------
-Sort  (cost=45493.52..45493.56 rows=15 width=29) (actual time=5.652..5.652 rows=13 loops=1)
+Sort  (cost=45432.44..45432.48 rows=15 width=29) (actual time=5.292..5.292 rows=13 loops=1)
 Sort Key: (count(*)) DESC
 Sort Method: quicksort  Memory: 26kB
-->  HashAggregate  (cost=45493.07..45493.22 rows=15 width=29) (actual time=5.648..5.649 rows=13 loops=1)
+->  HashAggregate  (cost=45432.00..45432.15 rows=15 width=29) (actual time=5.290..5.290 rows=13 loops=1)
 Group Key: hotels.hotel
 Batches: 1  Memory Usage: 24kB
-->  Nested Loop  (cost=0.54..45020.56 rows=94503 width=21) (actual time=0.035..5.578 rows=778 loops=1)
-->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.002..0.003 rows=16 loops=1)
-->  Index Scan using end_rtree on taxi_rtree  (cost=0.54..2812.01 rows=170 width=32) (actual time=0.077..0.346 rows=49 loops=16)
+->  Nested Loop  (cost=0.54..45020.56 rows=82288 width=21) (actual time=0.033..5.230 rows=778 loops=1)
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.002..0.002 rows=16 loops=1)
+->  Index Scan using end_rtree on taxi_rtree  (cost=0.54..2812.01 rows=170 width=32) (actual time=0.077..0.324 rows=49 loops=16)
 Index Cond: (end_point && _st_expand(hotels.geom, '5'::double precision))
 Filter: st_dwithin(hotels.geom, end_point, '5'::double precision, true)
 Rows Removed by Filter: 36
-Planning Time: 0.141 ms
-Execution Time: 5.671 ms
+Planning Time: 0.097 ms
+Execution Time: 5.306 ms
 --------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -433,20 +433,20 @@ Pestana Vintage Porto    1
 ----------------------  --
 Query Plan:
 -----------------------------------------------------------------------------------------------------------------------------------
-Sort  (cost=45388.12..45388.16 rows=15 width=29) (actual time=1650.432..1650.433 rows=4 loops=1)
+Sort  (cost=45388.12..45388.16 rows=15 width=29) (actual time=1506.231..1506.231 rows=4 loops=1)
 Sort Key: (count(*)) DESC
 Sort Method: quicksort  Memory: 25kB
-->  HashAggregate  (cost=45387.67..45387.82 rows=15 width=29) (actual time=1650.427..1650.428 rows=4 loops=1)
+->  HashAggregate  (cost=45387.67..45387.82 rows=15 width=29) (actual time=1506.227..1506.227 rows=4 loops=1)
 Group Key: hotels.hotel
 Batches: 1  Memory Usage: 24kB
-->  Nested Loop  (cost=0.54..45020.56 rows=73423 width=21) (actual time=95.679..1650.408 rows=31 loops=1)
-->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.009..0.018 rows=16 loops=1)
-->  Index Scan using end_quadtree on taxi_quad  (cost=0.54..2812.01 rows=170 width=32) (actual time=92.374..99.678 rows=2 loops=16)
+->  Nested Loop  (cost=0.54..45020.56 rows=73423 width=21) (actual time=94.472..1506.205 rows=31 loops=1)
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.005..0.012 rows=16 loops=1)
+->  Index Scan using end_quadtree on taxi_quad  (cost=0.54..2812.01 rows=170 width=32) (actual time=84.001..91.323 rows=2 loops=16)
 Index Cond: (end_point && _st_expand(hotels.geom, '1'::double precision))
 Filter: st_dwithin(hotels.geom, end_point, '1'::double precision, true)
 Rows Removed by Filter: 4
-Planning Time: 0.165 ms
-Execution Time: 1652.602 ms
+Planning Time: 0.134 ms
+Execution Time: 1508.852 ms
 -----------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -479,20 +479,20 @@ BessaHotel Baixa          1
 ----------------------  ---
 Query Plan:
 ------------------------------------------------------------------------------------------------------------------------------------
-Sort  (cost=45388.12..45388.16 rows=15 width=29) (actual time=1595.082..1595.082 rows=11 loops=1)
+Sort  (cost=45388.12..45388.16 rows=15 width=29) (actual time=1478.404..1478.404 rows=11 loops=1)
 Sort Key: (count(*)) DESC
 Sort Method: quicksort  Memory: 25kB
-->  HashAggregate  (cost=45387.67..45387.82 rows=15 width=29) (actual time=1595.075..1595.076 rows=11 loops=1)
+->  HashAggregate  (cost=45387.67..45387.82 rows=15 width=29) (actual time=1478.396..1478.396 rows=11 loops=1)
 Group Key: hotels.hotel
 Batches: 1  Memory Usage: 24kB
-->  Nested Loop  (cost=0.54..45020.56 rows=73423 width=21) (actual time=93.479..1595.011 rows=314 loops=1)
-->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.005..0.014 rows=16 loops=1)
-->  Index Scan using end_quadtree on taxi_quad  (cost=0.54..2812.01 rows=170 width=32) (actual time=65.756..95.747 rows=20 loops=16)
+->  Nested Loop  (cost=0.54..45020.56 rows=73423 width=21) (actual time=89.789..1478.345 rows=314 loops=1)
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.004..0.011 rows=16 loops=1)
+->  Index Scan using end_quadtree on taxi_quad  (cost=0.54..2812.01 rows=170 width=32) (actual time=61.302..89.713 rows=20 loops=16)
 Index Cond: (end_point && _st_expand(hotels.geom, '3'::double precision))
 Filter: st_dwithin(hotels.geom, end_point, '3'::double precision, true)
 Rows Removed by Filter: 19
-Planning Time: 0.139 ms
-Execution Time: 1598.336 ms
+Planning Time: 0.168 ms
+Execution Time: 1481.631 ms
 ------------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -527,20 +527,20 @@ Eurostars Porto Douro                  1
 -----------------------------------  ---
 Query Plan:
 ------------------------------------------------------------------------------------------------------------------------------------
-Sort  (cost=45388.12..45388.16 rows=15 width=29) (actual time=1575.472..1575.473 rows=13 loops=1)
+Sort  (cost=45388.12..45388.16 rows=15 width=29) (actual time=1472.560..1472.561 rows=13 loops=1)
 Sort Key: (count(*)) DESC
 Sort Method: quicksort  Memory: 26kB
-->  HashAggregate  (cost=45387.67..45387.82 rows=15 width=29) (actual time=1575.467..1575.468 rows=13 loops=1)
+->  HashAggregate  (cost=45387.67..45387.82 rows=15 width=29) (actual time=1472.554..1472.555 rows=13 loops=1)
 Group Key: hotels.hotel
 Batches: 1  Memory Usage: 24kB
-->  Nested Loop  (cost=0.54..45020.56 rows=73423 width=21) (actual time=95.615..1575.362 rows=778 loops=1)
-->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.004..0.012 rows=16 loops=1)
-->  Index Scan using end_quadtree on taxi_quad  (cost=0.54..2812.01 rows=170 width=32) (actual time=56.794..94.637 rows=49 loops=16)
+->  Nested Loop  (cost=0.54..45020.56 rows=73423 width=21) (actual time=95.062..1472.472 rows=778 loops=1)
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.003..0.008 rows=16 loops=1)
+->  Index Scan using end_quadtree on taxi_quad  (cost=0.54..2812.01 rows=170 width=32) (actual time=53.910..89.482 rows=49 loops=16)
 Index Cond: (end_point && _st_expand(hotels.geom, '5'::double precision))
 Filter: st_dwithin(hotels.geom, end_point, '5'::double precision, true)
 Rows Removed by Filter: 36
-Planning Time: 0.119 ms
-Execution Time: 1578.720 ms
+Planning Time: 0.210 ms
+Execution Time: 1475.293 ms
 ------------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -566,28 +566,28 @@ Pestana Vintage Porto    1
 ----------------------  --
 Query Plan:
 -------------------------------------------------------------------------------------------------------------------------------
-Sort  (cost=142898490.48..142898490.52 rows=15 width=29) (actual time=9184.981..9187.539 rows=4 loops=1)
+Sort  (cost=142898490.48..142898490.52 rows=15 width=29) (actual time=6957.931..6960.651 rows=4 loops=1)
 Sort Key: (count(*)) DESC
 Sort Method: quicksort  Memory: 25kB
-->  Finalize GroupAggregate  (cost=142898226.31..142898490.19 rows=15 width=29) (actual time=9184.976..9187.536 rows=4 loops=1)
+->  Finalize GroupAggregate  (cost=142898226.31..142898490.19 rows=15 width=29) (actual time=6957.924..6960.648 rows=4 loops=1)
 Group Key: hotels.hotel
-->  Gather Merge  (cost=142898226.31..142898489.89 rows=30 width=29) (actual time=9184.970..9187.532 rows=8 loops=1)
+->  Gather Merge  (cost=142898226.31..142898489.89 rows=30 width=29) (actual time=6957.921..6960.644 rows=8 loops=1)
 Workers Planned: 2
 Workers Launched: 2
-->  Partial GroupAggregate  (cost=142897226.28..142897486.40 rows=15 width=29) (actual time=9178.813..9178.815 rows=3 loops=3)
+->  Partial GroupAggregate  (cost=142897226.28..142897486.40 rows=15 width=29) (actual time=6951.930..6951.932 rows=3 loops=3)
 Group Key: hotels.hotel
-->  Sort  (cost=142897226.28..142897312.94 rows=34663 width=21) (actual time=9178.809..9178.809 rows=10 loops=3)
+->  Sort  (cost=142897226.28..142897312.94 rows=34663 width=21) (actual time=6951.924..6951.925 rows=10 loops=3)
 Sort Key: hotels.hotel
 Sort Method: quicksort  Memory: 25kB
 Worker 0:  Sort Method: quicksort  Memory: 25kB
 Worker 1:  Sort Method: quicksort  Memory: 25kB
-->  Nested Loop  (cost=0.00..142894612.50 rows=34663 width=21) (actual time=38.067..9178.738 rows=10 loops=3)
+->  Nested Loop  (cost=0.00..142894612.50 rows=34663 width=21) (actual time=30.480..6951.863 rows=10 loops=3)
 Join Filter: st_dwithin(hotels.geom, taxi.end_point, '1'::double precision, true)
 Rows Removed by Join Filter: 9092091
-->  Parallel Seq Scan on taxi  (cost=0.00..209062.50 rows=708750 width=32) (actual time=0.227..2076.509 rows=568256 loops=3)
+->  Parallel Seq Scan on taxi  (cost=0.00..209062.50 rows=708750 width=32) (actual time=0.017..164.668 rows=568256 loops=3)
 ->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.000..0.001 rows=16 loops=1704769)
-Planning Time: 0.129 ms
-Execution Time: 9187.562 ms
+Planning Time: 1.866 ms
+Execution Time: 6960.669 ms
 -------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -620,28 +620,28 @@ BessaHotel Baixa          1
 ----------------------  ---
 Query Plan:
 --------------------------------------------------------------------------------------------------------------------------------
-Sort  (cost=142898490.48..142898490.52 rows=15 width=29) (actual time=9199.294..9201.999 rows=11 loops=1)
+Sort  (cost=142898490.48..142898490.52 rows=15 width=29) (actual time=6951.721..6954.311 rows=11 loops=1)
 Sort Key: (count(*)) DESC
 Sort Method: quicksort  Memory: 25kB
-->  Finalize GroupAggregate  (cost=142898226.31..142898490.19 rows=15 width=29) (actual time=9199.276..9201.993 rows=11 loops=1)
+->  Finalize GroupAggregate  (cost=142898226.31..142898490.19 rows=15 width=29) (actual time=6951.708..6954.309 rows=11 loops=1)
 Group Key: hotels.hotel
-->  Gather Merge  (cost=142898226.31..142898489.89 rows=30 width=29) (actual time=9199.270..9201.988 rows=24 loops=1)
+->  Gather Merge  (cost=142898226.31..142898489.89 rows=30 width=29) (actual time=6951.705..6954.304 rows=22 loops=1)
 Workers Planned: 2
 Workers Launched: 2
-->  Partial GroupAggregate  (cost=142897226.28..142897486.40 rows=15 width=29) (actual time=9192.557..9192.564 rows=8 loops=3)
+->  Partial GroupAggregate  (cost=142897226.28..142897486.40 rows=15 width=29) (actual time=6945.736..6945.747 rows=7 loops=3)
 Group Key: hotels.hotel
-->  Sort  (cost=142897226.28..142897312.94 rows=34663 width=21) (actual time=9192.553..9192.556 rows=105 loops=3)
+->  Sort  (cost=142897226.28..142897312.94 rows=34663 width=21) (actual time=6945.732..6945.734 rows=105 loops=3)
 Sort Key: hotels.hotel
-Sort Method: quicksort  Memory: 33kB
-Worker 0:  Sort Method: quicksort  Memory: 32kB
-Worker 1:  Sort Method: quicksort  Memory: 32kB
-->  Nested Loop  (cost=0.00..142894612.50 rows=34663 width=21) (actual time=29.765..9188.678 rows=105 loops=3)
+Sort Method: quicksort  Memory: 32kB
+Worker 0:  Sort Method: quicksort  Memory: 33kB
+Worker 1:  Sort Method: quicksort  Memory: 33kB
+->  Nested Loop  (cost=0.00..142894612.50 rows=34663 width=21) (actual time=19.698..6945.610 rows=105 loops=3)
 Join Filter: st_dwithin(hotels.geom, taxi.end_point, '3'::double precision, true)
 Rows Removed by Join Filter: 9091997
-->  Parallel Seq Scan on taxi  (cost=0.00..209062.50 rows=708750 width=32) (actual time=0.161..2044.284 rows=568256 loops=3)
+->  Parallel Seq Scan on taxi  (cost=0.00..209062.50 rows=708750 width=32) (actual time=0.016..159.906 rows=568256 loops=3)
 ->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.000..0.001 rows=16 loops=1704769)
-Planning Time: 0.144 ms
-Execution Time: 9203.242 ms
+Planning Time: 1.683 ms
+Execution Time: 6954.335 ms
 --------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -676,27 +676,414 @@ Eurostars Porto Douro                  1
 -----------------------------------  ---
 Query Plan:
 --------------------------------------------------------------------------------------------------------------------------------
-Sort  (cost=142898490.48..142898490.52 rows=15 width=29) (actual time=9085.167..9087.777 rows=13 loops=1)
+Sort  (cost=142898490.48..142898490.52 rows=15 width=29) (actual time=6944.557..6947.242 rows=13 loops=1)
 Sort Key: (count(*)) DESC
 Sort Method: quicksort  Memory: 26kB
-->  Finalize GroupAggregate  (cost=142898226.31..142898490.19 rows=15 width=29) (actual time=9085.138..9087.773 rows=13 loops=1)
+->  Finalize GroupAggregate  (cost=142898226.31..142898490.19 rows=15 width=29) (actual time=6944.534..6947.239 rows=13 loops=1)
 Group Key: hotels.hotel
-->  Gather Merge  (cost=142898226.31..142898489.89 rows=30 width=29) (actual time=9085.115..9087.766 rows=30 loops=1)
+->  Gather Merge  (cost=142898226.31..142898489.89 rows=30 width=29) (actual time=6944.519..6947.233 rows=33 loops=1)
 Workers Planned: 2
 Workers Launched: 2
-->  Partial GroupAggregate  (cost=142897226.28..142897486.40 rows=15 width=29) (actual time=9079.008..9079.026 rows=10 loops=3)
+->  Partial GroupAggregate  (cost=142897226.28..142897486.40 rows=15 width=29) (actual time=6938.185..6938.200 rows=11 loops=3)
 Group Key: hotels.hotel
-->  Sort  (cost=142897226.28..142897312.94 rows=34663 width=21) (actual time=9079.002..9079.007 rows=259 loops=3)
+->  Sort  (cost=142897226.28..142897312.94 rows=34663 width=21) (actual time=6938.181..6938.186 rows=259 loops=3)
 Sort Key: hotels.hotel
-Sort Method: quicksort  Memory: 45kB
-Worker 0:  Sort Method: quicksort  Memory: 42kB
+Sort Method: quicksort  Memory: 44kB
+Worker 0:  Sort Method: quicksort  Memory: 43kB
 Worker 1:  Sort Method: quicksort  Memory: 45kB
-->  Nested Loop  (cost=0.00..142894612.50 rows=34663 width=21) (actual time=30.236..9075.026 rows=259 loops=3)
+->  Nested Loop  (cost=0.00..142894612.50 rows=34663 width=21) (actual time=19.926..6937.996 rows=259 loops=3)
 Join Filter: st_dwithin(hotels.geom, taxi.end_point, '5'::double precision, true)
 Rows Removed by Join Filter: 9091842
-->  Parallel Seq Scan on taxi  (cost=0.00..209062.50 rows=708750 width=32) (actual time=0.149..2010.725 rows=568256 loops=3)
+->  Parallel Seq Scan on taxi  (cost=0.00..209062.50 rows=708750 width=32) (actual time=0.020..154.811 rows=568256 loops=3)
 ->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=53) (actual time=0.000..0.001 rows=16 loops=1704769)
-Planning Time: 0.098 ms
-Execution Time: 9087.796 ms
+Planning Time: 0.100 ms
+Execution Time: 6947.394 ms
 --------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 3.1.1
+* Test case index R tree
+*/
+
+        SELECT ST_HausdorffDistance(
+           	ST_GeomFromText('LINESTRING(-8.685234 41.166639,-8.685756 41.166837,-8.685963 41.166963,-8.685873 41.167008,-8.685207 41.166612,-8.684946 41.166846,-8.684874 41.167089,-8.684325 41.167125,-8.681346 41.166639,-8.678232 41.166126,-8.677602 41.166027,-8.674587 41.165532,-8.671752 41.165082,-8.671122 41.164938,-8.668395 41.164434,-8.665299 41.16393,-8.663517 41.163651,-8.663076 41.163624,-8.662122 41.163408,-8.659152 41.162904,-8.656038 41.162373,-8.652852 41.16186,-8.650269 41.161455,-8.650251 41.161428,-8.649927 41.161356,-8.647218 41.160906,-8.645652 41.160672,-8.643717 41.160375,-8.643312 41.160276,-8.643177 41.160267,-8.641908 41.160042,-8.641566 41.16006,-8.640675 41.160645,-8.639217 41.161329,-8.63874 41.161509,-8.63775 41.161878,-8.636265 41.162481,-8.634744 41.163165,-8.633502 41.16339,-8.632638 41.162247,-8.630928 41.162787,-8.628867 41.163642,-8.626473 41.163489,-8.625222 41.163381,-8.625249 41.163381,-8.625267 41.163372,-8.625051 41.163372,-8.622729 41.163093,-8.619966 41.162733,-8.617518 41.162481,-8.615664 41.162292,-8.613306 41.162085,-8.612883 41.161977,-8.611893 41.161824,-8.611542 41.161761,-8.611524 41.161716,-8.610345 41.161581,-8.609859 41.161581,-8.609679 41.161491,-8.609868 41.160663,-8.609931 41.160591,-8.60994 41.160582,-8.609904 41.160339)'),
+           	polyline::geometry
+        ) AS sim FROM taxi_rtree
+        ORDER BY sim ASC
+        LIMIT 5
+        
+/**
+Outputs:
+-----------
+0
+0.000228211
+0.000237607
+0.000243
+0.000253105
+-----------
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Limit  (cost=9099219.21..9099219.79 rows=5 width=8) (actual time=34141.807..34143.778 rows=5 loops=1)
+->  Gather Merge  (cost=9099219.21..9264908.17 rows=1420092 width=8) (actual time=34141.806..34143.777 rows=5 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+->  Sort  (cost=9098219.18..9099994.30 rows=710046 width=8) (actual time=34135.233..34135.234 rows=4 loops=3)
+Sort Key: (st_hausdorffdistance('01020000003F000000EB36A8FDD65E21C07C9E3F6D54954440511212691B5F21C0A26131EA5A9544403788D68A365F21C02F52280B5F954440386BF0BE2A5F21C0CF15A5846095444005FBAF73D35E21C0828FC18A53954440520DFB3DB15E21C0F5BBB0355B954440ECC20FCEA75E21C0BB421F2C639544409FABADD85F5E21C008AC1C5A6495444055850662D95C21C07C9E3F6D549544408B338639415B21C0F581E49D439544408C683BA6EE5A21C062A06B5F409544400F9D9E77635921C082380F2730954440910BCEE0EF5721C042942F68219544409240834D9D5721C00FEF39B01C954440AE9E93DE375621C0DC2C5E2C0C9544407D1F0E12A25421C0A96A82A8FB94444019AE0E80B85321C0967A1684F294444066868DB27E5321C09C6B98A1F19444409AEC9FA7015321C0CFF3A78DEA9444409D2FF65E7C5121C09C31CC09DA944440D3DD7536E44F21C0706072A3C8944440A2410A9E424E21C0E94317D4B79444408B34F10EF04C21C04963B48EAA944440F261F6B2ED4C21C0505436ACA99444402593533BC34C21C0B6813B50A7944440DBC35E28604B21C076DD5B9198944440A93121E6924A21C003B16CE6909444402BC24D46954921C04A0C022B87944440AB3FC230604921C0B72A89EC839444402B14E97E4E4921C063D009A183944440E014562AA84821C043FE99417C9444407973B8567B4821C0EAB298D87C944440C7BAB88D064821C00AA2EE03909444402F185C73474721C0BD72BD6DA6944440494BE5ED084721C03D81B053AC9444404A0C022B874621C090F8156BB8944440CB2DAD86C44521C0569C6A2DCC94444019AA622AFD4421C0096D3997E2944440B4E6C75F5A4421C0293FA9F6E9944440E869C020E94321C0E36F7B82C4944440EA42ACFE084321C0639B5434D69444403811FDDAFA4121C043209738F29444406EA7AD11C14021C0BC202235ED944440BC7A15191D4021C0D6E429ABE9944440A2B60DA3204021C0D6E429ABE99444403B8908FF224021C0838AAA5FE994444008AA46AF064021C0838AAA5FE9944440A48AE255D63E21C0709A3E3BE09444408D43FD2E6C3D21C0707D586FD4944440F661BD512B3C21C0569C6A2DCC9444402BA6D24F383B21C08333F8FBC594444093E1783E033A21C009168733BF9444407A8CF2CCCB3921C023DA8EA9BB9444407B4D0F0A4A3921C09DDA19A6B6944440C84274081C3921C056629E95B49444402E7079AC193921C0B69E211CB3944440E38DCC237F3821C0D653ABAFAE944440B05758703F3821C0D653ABAFAE944440B01D8CD8273821C096CCB1BCAB944440FDC0559E403821C0B056ED9A9094444016A243E0483821C01684F23E8E944440630B410E4A3821C0C32973F38D94444030664B56453821C0FDA204FD85944440'::geometry, (polyline)::geometry))
+Sort Method: top-N heapsort  Memory: 25kB
+Worker 0:  Sort Method: top-N heapsort  Memory: 25kB
+Worker 1:  Sort Method: top-N heapsort  Memory: 25kB
+->  Parallel Seq Scan on taxi_rtree  (cost=0.00..9086425.57 rows=710046 width=8) (actual time=0.308..34110.259 rows=568256 loops=3)
+Planning Time: 0.092 ms
+Execution Time: 34143.791 ms
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 3.1.2
+* Test case index R tree
+*/
+
+        SELECT ST_HausdorffDistance(
+           	ST_GeomFromText('LINESTRING(-8.685234 41.166639,-8.685756 41.166837,-8.685963 41.166963,-8.685873 41.167008,-8.685207 41.166612,-8.684946 41.166846,-8.684874 41.167089,-8.684325 41.167125,-8.681346 41.166639,-8.678232 41.166126,-8.677602 41.166027,-8.674587 41.165532,-8.671752 41.165082,-8.671122 41.164938,-8.668395 41.164434,-8.665299 41.16393,-8.663517 41.163651,-8.663076 41.163624,-8.662122 41.163408,-8.659152 41.162904,-8.656038 41.162373,-8.652852 41.16186,-8.650269 41.161455,-8.650251 41.161428,-8.649927 41.161356,-8.647218 41.160906,-8.645652 41.160672,-8.643717 41.160375,-8.643312 41.160276,-8.643177 41.160267,-8.641908 41.160042,-8.641566 41.16006,-8.640675 41.160645,-8.639217 41.161329,-8.63874 41.161509,-8.63775 41.161878,-8.636265 41.162481,-8.634744 41.163165,-8.633502 41.16339,-8.632638 41.162247,-8.630928 41.162787,-8.628867 41.163642,-8.626473 41.163489,-8.625222 41.163381,-8.625249 41.163381,-8.625267 41.163372,-8.625051 41.163372,-8.622729 41.163093,-8.619966 41.162733,-8.617518 41.162481,-8.615664 41.162292,-8.613306 41.162085,-8.612883 41.161977,-8.611893 41.161824,-8.611542 41.161761,-8.611524 41.161716,-8.610345 41.161581,-8.609859 41.161581,-8.609679 41.161491,-8.609868 41.160663,-8.609931 41.160591,-8.60994 41.160582,-8.609904 41.160339)'),
+           	polyline::geometry
+        ) AS sim FROM taxi_rtree
+        ORDER BY sim ASC
+        LIMIT 10
+        
+/**
+Outputs:
+-----------
+0
+0.000228211
+0.000237607
+0.000243
+0.000253105
+0.000274758
+0.000293115
+0.000295223
+0.000334093
+0.000340695
+-----------
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Limit  (cost=9102769.44..9102770.60 rows=10 width=8) (actual time=32115.570..32117.526 rows=10 loops=1)
+->  Gather Merge  (cost=9102769.44..9268458.40 rows=1420092 width=8) (actual time=32115.569..32117.524 rows=10 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+->  Sort  (cost=9101769.41..9103544.53 rows=710046 width=8) (actual time=32108.911..32108.912 rows=8 loops=3)
+Sort Key: (st_hausdorffdistance('01020000003F000000EB36A8FDD65E21C07C9E3F6D54954440511212691B5F21C0A26131EA5A9544403788D68A365F21C02F52280B5F954440386BF0BE2A5F21C0CF15A5846095444005FBAF73D35E21C0828FC18A53954440520DFB3DB15E21C0F5BBB0355B954440ECC20FCEA75E21C0BB421F2C639544409FABADD85F5E21C008AC1C5A6495444055850662D95C21C07C9E3F6D549544408B338639415B21C0F581E49D439544408C683BA6EE5A21C062A06B5F409544400F9D9E77635921C082380F2730954440910BCEE0EF5721C042942F68219544409240834D9D5721C00FEF39B01C954440AE9E93DE375621C0DC2C5E2C0C9544407D1F0E12A25421C0A96A82A8FB94444019AE0E80B85321C0967A1684F294444066868DB27E5321C09C6B98A1F19444409AEC9FA7015321C0CFF3A78DEA9444409D2FF65E7C5121C09C31CC09DA944440D3DD7536E44F21C0706072A3C8944440A2410A9E424E21C0E94317D4B79444408B34F10EF04C21C04963B48EAA944440F261F6B2ED4C21C0505436ACA99444402593533BC34C21C0B6813B50A7944440DBC35E28604B21C076DD5B9198944440A93121E6924A21C003B16CE6909444402BC24D46954921C04A0C022B87944440AB3FC230604921C0B72A89EC839444402B14E97E4E4921C063D009A183944440E014562AA84821C043FE99417C9444407973B8567B4821C0EAB298D87C944440C7BAB88D064821C00AA2EE03909444402F185C73474721C0BD72BD6DA6944440494BE5ED084721C03D81B053AC9444404A0C022B874621C090F8156BB8944440CB2DAD86C44521C0569C6A2DCC94444019AA622AFD4421C0096D3997E2944440B4E6C75F5A4421C0293FA9F6E9944440E869C020E94321C0E36F7B82C4944440EA42ACFE084321C0639B5434D69444403811FDDAFA4121C043209738F29444406EA7AD11C14021C0BC202235ED944440BC7A15191D4021C0D6E429ABE9944440A2B60DA3204021C0D6E429ABE99444403B8908FF224021C0838AAA5FE994444008AA46AF064021C0838AAA5FE9944440A48AE255D63E21C0709A3E3BE09444408D43FD2E6C3D21C0707D586FD4944440F661BD512B3C21C0569C6A2DCC9444402BA6D24F383B21C08333F8FBC594444093E1783E033A21C009168733BF9444407A8CF2CCCB3921C023DA8EA9BB9444407B4D0F0A4A3921C09DDA19A6B6944440C84274081C3921C056629E95B49444402E7079AC193921C0B69E211CB3944440E38DCC237F3821C0D653ABAFAE944440B05758703F3821C0D653ABAFAE944440B01D8CD8273821C096CCB1BCAB944440FDC0559E403821C0B056ED9A9094444016A243E0483821C01684F23E8E944440630B410E4A3821C0C32973F38D94444030664B56453821C0FDA204FD85944440'::geometry, (polyline)::geometry))
+Sort Method: top-N heapsort  Memory: 25kB
+Worker 0:  Sort Method: top-N heapsort  Memory: 25kB
+Worker 1:  Sort Method: top-N heapsort  Memory: 25kB
+->  Parallel Seq Scan on taxi_rtree  (cost=0.00..9086425.57 rows=710046 width=8) (actual time=0.296..32083.595 rows=568256 loops=3)
+Planning Time: 0.102 ms
+Execution Time: 32117.536 ms
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 3.1.3
+* Test case index R tree
+*/
+
+        SELECT ST_HausdorffDistance(
+           	ST_GeomFromText('LINESTRING(-8.685234 41.166639,-8.685756 41.166837,-8.685963 41.166963,-8.685873 41.167008,-8.685207 41.166612,-8.684946 41.166846,-8.684874 41.167089,-8.684325 41.167125,-8.681346 41.166639,-8.678232 41.166126,-8.677602 41.166027,-8.674587 41.165532,-8.671752 41.165082,-8.671122 41.164938,-8.668395 41.164434,-8.665299 41.16393,-8.663517 41.163651,-8.663076 41.163624,-8.662122 41.163408,-8.659152 41.162904,-8.656038 41.162373,-8.652852 41.16186,-8.650269 41.161455,-8.650251 41.161428,-8.649927 41.161356,-8.647218 41.160906,-8.645652 41.160672,-8.643717 41.160375,-8.643312 41.160276,-8.643177 41.160267,-8.641908 41.160042,-8.641566 41.16006,-8.640675 41.160645,-8.639217 41.161329,-8.63874 41.161509,-8.63775 41.161878,-8.636265 41.162481,-8.634744 41.163165,-8.633502 41.16339,-8.632638 41.162247,-8.630928 41.162787,-8.628867 41.163642,-8.626473 41.163489,-8.625222 41.163381,-8.625249 41.163381,-8.625267 41.163372,-8.625051 41.163372,-8.622729 41.163093,-8.619966 41.162733,-8.617518 41.162481,-8.615664 41.162292,-8.613306 41.162085,-8.612883 41.161977,-8.611893 41.161824,-8.611542 41.161761,-8.611524 41.161716,-8.610345 41.161581,-8.609859 41.161581,-8.609679 41.161491,-8.609868 41.160663,-8.609931 41.160591,-8.60994 41.160582,-8.609904 41.160339)'),
+           	polyline::geometry
+        ) AS sim FROM taxi_rtree
+        ORDER BY sim ASC
+        LIMIT 15
+        
+/**
+Outputs:
+-----------
+0
+0.000228211
+0.000237607
+0.000243
+0.000253105
+0.000274758
+0.000293115
+0.000295223
+0.000334093
+0.000340695
+0.000355449
+0.000504975
+0.000956078
+0.00102498
+0.00125565
+-----------
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Limit  (cost=9104846.19..9104847.94 rows=15 width=8) (actual time=31586.642..31588.036 rows=15 loops=1)
+->  Gather Merge  (cost=9104846.19..9270535.16 rows=1420092 width=8) (actual time=31586.641..31588.029 rows=15 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+->  Sort  (cost=9103846.16..9105621.28 rows=710046 width=8) (actual time=31579.779..31579.779 rows=12 loops=3)
+Sort Key: (st_hausdorffdistance('01020000003F000000EB36A8FDD65E21C07C9E3F6D54954440511212691B5F21C0A26131EA5A9544403788D68A365F21C02F52280B5F954440386BF0BE2A5F21C0CF15A5846095444005FBAF73D35E21C0828FC18A53954440520DFB3DB15E21C0F5BBB0355B954440ECC20FCEA75E21C0BB421F2C639544409FABADD85F5E21C008AC1C5A6495444055850662D95C21C07C9E3F6D549544408B338639415B21C0F581E49D439544408C683BA6EE5A21C062A06B5F409544400F9D9E77635921C082380F2730954440910BCEE0EF5721C042942F68219544409240834D9D5721C00FEF39B01C954440AE9E93DE375621C0DC2C5E2C0C9544407D1F0E12A25421C0A96A82A8FB94444019AE0E80B85321C0967A1684F294444066868DB27E5321C09C6B98A1F19444409AEC9FA7015321C0CFF3A78DEA9444409D2FF65E7C5121C09C31CC09DA944440D3DD7536E44F21C0706072A3C8944440A2410A9E424E21C0E94317D4B79444408B34F10EF04C21C04963B48EAA944440F261F6B2ED4C21C0505436ACA99444402593533BC34C21C0B6813B50A7944440DBC35E28604B21C076DD5B9198944440A93121E6924A21C003B16CE6909444402BC24D46954921C04A0C022B87944440AB3FC230604921C0B72A89EC839444402B14E97E4E4921C063D009A183944440E014562AA84821C043FE99417C9444407973B8567B4821C0EAB298D87C944440C7BAB88D064821C00AA2EE03909444402F185C73474721C0BD72BD6DA6944440494BE5ED084721C03D81B053AC9444404A0C022B874621C090F8156BB8944440CB2DAD86C44521C0569C6A2DCC94444019AA622AFD4421C0096D3997E2944440B4E6C75F5A4421C0293FA9F6E9944440E869C020E94321C0E36F7B82C4944440EA42ACFE084321C0639B5434D69444403811FDDAFA4121C043209738F29444406EA7AD11C14021C0BC202235ED944440BC7A15191D4021C0D6E429ABE9944440A2B60DA3204021C0D6E429ABE99444403B8908FF224021C0838AAA5FE994444008AA46AF064021C0838AAA5FE9944440A48AE255D63E21C0709A3E3BE09444408D43FD2E6C3D21C0707D586FD4944440F661BD512B3C21C0569C6A2DCC9444402BA6D24F383B21C08333F8FBC594444093E1783E033A21C009168733BF9444407A8CF2CCCB3921C023DA8EA9BB9444407B4D0F0A4A3921C09DDA19A6B6944440C84274081C3921C056629E95B49444402E7079AC193921C0B69E211CB3944440E38DCC237F3821C0D653ABAFAE944440B05758703F3821C0D653ABAFAE944440B01D8CD8273821C096CCB1BCAB944440FDC0559E403821C0B056ED9A9094444016A243E0483821C01684F23E8E944440630B410E4A3821C0C32973F38D94444030664B56453821C0FDA204FD85944440'::geometry, (polyline)::geometry))
+Sort Method: top-N heapsort  Memory: 26kB
+Worker 0:  Sort Method: top-N heapsort  Memory: 26kB
+Worker 1:  Sort Method: top-N heapsort  Memory: 26kB
+->  Parallel Seq Scan on taxi_rtree  (cost=0.00..9086425.57 rows=710046 width=8) (actual time=0.582..31555.834 rows=568256 loops=3)
+Planning Time: 0.077 ms
+Execution Time: 31588.049 ms
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 3.2.1
+* Test case index Quad tree
+*/
+
+        SELECT ST_HausdorffDistance(
+           	ST_GeomFromText('LINESTRING(-8.685234 41.166639,-8.685756 41.166837,-8.685963 41.166963,-8.685873 41.167008,-8.685207 41.166612,-8.684946 41.166846,-8.684874 41.167089,-8.684325 41.167125,-8.681346 41.166639,-8.678232 41.166126,-8.677602 41.166027,-8.674587 41.165532,-8.671752 41.165082,-8.671122 41.164938,-8.668395 41.164434,-8.665299 41.16393,-8.663517 41.163651,-8.663076 41.163624,-8.662122 41.163408,-8.659152 41.162904,-8.656038 41.162373,-8.652852 41.16186,-8.650269 41.161455,-8.650251 41.161428,-8.649927 41.161356,-8.647218 41.160906,-8.645652 41.160672,-8.643717 41.160375,-8.643312 41.160276,-8.643177 41.160267,-8.641908 41.160042,-8.641566 41.16006,-8.640675 41.160645,-8.639217 41.161329,-8.63874 41.161509,-8.63775 41.161878,-8.636265 41.162481,-8.634744 41.163165,-8.633502 41.16339,-8.632638 41.162247,-8.630928 41.162787,-8.628867 41.163642,-8.626473 41.163489,-8.625222 41.163381,-8.625249 41.163381,-8.625267 41.163372,-8.625051 41.163372,-8.622729 41.163093,-8.619966 41.162733,-8.617518 41.162481,-8.615664 41.162292,-8.613306 41.162085,-8.612883 41.161977,-8.611893 41.161824,-8.611542 41.161761,-8.611524 41.161716,-8.610345 41.161581,-8.609859 41.161581,-8.609679 41.161491,-8.609868 41.160663,-8.609931 41.160591,-8.60994 41.160582,-8.609904 41.160339)'),
+           	polyline::geometry
+        ) AS sim FROM taxi_quad
+        ORDER BY sim ASC
+        LIMIT 5
+        
+/**
+Outputs:
+-----------
+0
+0.000228211
+0.000237607
+0.000243
+0.000253105
+-----------
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Limit  (cost=9102652.19..9102652.77 rows=5 width=8) (actual time=33095.022..33096.223 rows=5 loops=1)
+->  Gather Merge  (cost=9102652.19..9268405.09 rows=1420640 width=8) (actual time=33095.022..33096.222 rows=5 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+->  Sort  (cost=9101652.16..9103427.96 rows=710320 width=8) (actual time=33087.718..33087.718 rows=4 loops=3)
+Sort Key: (st_hausdorffdistance('01020000003F000000EB36A8FDD65E21C07C9E3F6D54954440511212691B5F21C0A26131EA5A9544403788D68A365F21C02F52280B5F954440386BF0BE2A5F21C0CF15A5846095444005FBAF73D35E21C0828FC18A53954440520DFB3DB15E21C0F5BBB0355B954440ECC20FCEA75E21C0BB421F2C639544409FABADD85F5E21C008AC1C5A6495444055850662D95C21C07C9E3F6D549544408B338639415B21C0F581E49D439544408C683BA6EE5A21C062A06B5F409544400F9D9E77635921C082380F2730954440910BCEE0EF5721C042942F68219544409240834D9D5721C00FEF39B01C954440AE9E93DE375621C0DC2C5E2C0C9544407D1F0E12A25421C0A96A82A8FB94444019AE0E80B85321C0967A1684F294444066868DB27E5321C09C6B98A1F19444409AEC9FA7015321C0CFF3A78DEA9444409D2FF65E7C5121C09C31CC09DA944440D3DD7536E44F21C0706072A3C8944440A2410A9E424E21C0E94317D4B79444408B34F10EF04C21C04963B48EAA944440F261F6B2ED4C21C0505436ACA99444402593533BC34C21C0B6813B50A7944440DBC35E28604B21C076DD5B9198944440A93121E6924A21C003B16CE6909444402BC24D46954921C04A0C022B87944440AB3FC230604921C0B72A89EC839444402B14E97E4E4921C063D009A183944440E014562AA84821C043FE99417C9444407973B8567B4821C0EAB298D87C944440C7BAB88D064821C00AA2EE03909444402F185C73474721C0BD72BD6DA6944440494BE5ED084721C03D81B053AC9444404A0C022B874621C090F8156BB8944440CB2DAD86C44521C0569C6A2DCC94444019AA622AFD4421C0096D3997E2944440B4E6C75F5A4421C0293FA9F6E9944440E869C020E94321C0E36F7B82C4944440EA42ACFE084321C0639B5434D69444403811FDDAFA4121C043209738F29444406EA7AD11C14021C0BC202235ED944440BC7A15191D4021C0D6E429ABE9944440A2B60DA3204021C0D6E429ABE99444403B8908FF224021C0838AAA5FE994444008AA46AF064021C0838AAA5FE9944440A48AE255D63E21C0709A3E3BE09444408D43FD2E6C3D21C0707D586FD4944440F661BD512B3C21C0569C6A2DCC9444402BA6D24F383B21C08333F8FBC594444093E1783E033A21C009168733BF9444407A8CF2CCCB3921C023DA8EA9BB9444407B4D0F0A4A3921C09DDA19A6B6944440C84274081C3921C056629E95B49444402E7079AC193921C0B69E211CB3944440E38DCC237F3821C0D653ABAFAE944440B05758703F3821C0D653ABAFAE944440B01D8CD8273821C096CCB1BCAB944440FDC0559E403821C0B056ED9A9094444016A243E0483821C01684F23E8E944440630B410E4A3821C0C32973F38D94444030664B56453821C0FDA204FD85944440'::geometry, (polyline)::geometry))
+Sort Method: top-N heapsort  Memory: 25kB
+Worker 0:  Sort Method: top-N heapsort  Memory: 25kB
+Worker 1:  Sort Method: top-N heapsort  Memory: 25kB
+->  Parallel Seq Scan on taxi_quad  (cost=0.00..9089854.00 rows=710320 width=8) (actual time=0.382..33062.817 rows=568256 loops=3)
+Planning Time: 0.115 ms
+Execution Time: 33096.235 ms
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 3.2.2
+* Test case index Quad tree
+*/
+
+        SELECT ST_HausdorffDistance(
+           	ST_GeomFromText('LINESTRING(-8.685234 41.166639,-8.685756 41.166837,-8.685963 41.166963,-8.685873 41.167008,-8.685207 41.166612,-8.684946 41.166846,-8.684874 41.167089,-8.684325 41.167125,-8.681346 41.166639,-8.678232 41.166126,-8.677602 41.166027,-8.674587 41.165532,-8.671752 41.165082,-8.671122 41.164938,-8.668395 41.164434,-8.665299 41.16393,-8.663517 41.163651,-8.663076 41.163624,-8.662122 41.163408,-8.659152 41.162904,-8.656038 41.162373,-8.652852 41.16186,-8.650269 41.161455,-8.650251 41.161428,-8.649927 41.161356,-8.647218 41.160906,-8.645652 41.160672,-8.643717 41.160375,-8.643312 41.160276,-8.643177 41.160267,-8.641908 41.160042,-8.641566 41.16006,-8.640675 41.160645,-8.639217 41.161329,-8.63874 41.161509,-8.63775 41.161878,-8.636265 41.162481,-8.634744 41.163165,-8.633502 41.16339,-8.632638 41.162247,-8.630928 41.162787,-8.628867 41.163642,-8.626473 41.163489,-8.625222 41.163381,-8.625249 41.163381,-8.625267 41.163372,-8.625051 41.163372,-8.622729 41.163093,-8.619966 41.162733,-8.617518 41.162481,-8.615664 41.162292,-8.613306 41.162085,-8.612883 41.161977,-8.611893 41.161824,-8.611542 41.161761,-8.611524 41.161716,-8.610345 41.161581,-8.609859 41.161581,-8.609679 41.161491,-8.609868 41.160663,-8.609931 41.160591,-8.60994 41.160582,-8.609904 41.160339)'),
+           	polyline::geometry
+        ) AS sim FROM taxi_quad
+        ORDER BY sim ASC
+        LIMIT 10
+        
+/**
+Outputs:
+-----------
+0
+0.000228211
+0.000237607
+0.000243
+0.000253105
+0.000274758
+0.000293115
+0.000295223
+0.000334093
+0.000340695
+-----------
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Limit  (cost=9106203.79..9106204.95 rows=10 width=8) (actual time=34126.725..34128.129 rows=10 loops=1)
+->  Gather Merge  (cost=9106203.79..9271956.69 rows=1420640 width=8) (actual time=34126.724..34128.124 rows=10 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+->  Sort  (cost=9105203.76..9106979.56 rows=710320 width=8) (actual time=34119.777..34119.778 rows=7 loops=3)
+Sort Key: (st_hausdorffdistance('01020000003F000000EB36A8FDD65E21C07C9E3F6D54954440511212691B5F21C0A26131EA5A9544403788D68A365F21C02F52280B5F954440386BF0BE2A5F21C0CF15A5846095444005FBAF73D35E21C0828FC18A53954440520DFB3DB15E21C0F5BBB0355B954440ECC20FCEA75E21C0BB421F2C639544409FABADD85F5E21C008AC1C5A6495444055850662D95C21C07C9E3F6D549544408B338639415B21C0F581E49D439544408C683BA6EE5A21C062A06B5F409544400F9D9E77635921C082380F2730954440910BCEE0EF5721C042942F68219544409240834D9D5721C00FEF39B01C954440AE9E93DE375621C0DC2C5E2C0C9544407D1F0E12A25421C0A96A82A8FB94444019AE0E80B85321C0967A1684F294444066868DB27E5321C09C6B98A1F19444409AEC9FA7015321C0CFF3A78DEA9444409D2FF65E7C5121C09C31CC09DA944440D3DD7536E44F21C0706072A3C8944440A2410A9E424E21C0E94317D4B79444408B34F10EF04C21C04963B48EAA944440F261F6B2ED4C21C0505436ACA99444402593533BC34C21C0B6813B50A7944440DBC35E28604B21C076DD5B9198944440A93121E6924A21C003B16CE6909444402BC24D46954921C04A0C022B87944440AB3FC230604921C0B72A89EC839444402B14E97E4E4921C063D009A183944440E014562AA84821C043FE99417C9444407973B8567B4821C0EAB298D87C944440C7BAB88D064821C00AA2EE03909444402F185C73474721C0BD72BD6DA6944440494BE5ED084721C03D81B053AC9444404A0C022B874621C090F8156BB8944440CB2DAD86C44521C0569C6A2DCC94444019AA622AFD4421C0096D3997E2944440B4E6C75F5A4421C0293FA9F6E9944440E869C020E94321C0E36F7B82C4944440EA42ACFE084321C0639B5434D69444403811FDDAFA4121C043209738F29444406EA7AD11C14021C0BC202235ED944440BC7A15191D4021C0D6E429ABE9944440A2B60DA3204021C0D6E429ABE99444403B8908FF224021C0838AAA5FE994444008AA46AF064021C0838AAA5FE9944440A48AE255D63E21C0709A3E3BE09444408D43FD2E6C3D21C0707D586FD4944440F661BD512B3C21C0569C6A2DCC9444402BA6D24F383B21C08333F8FBC594444093E1783E033A21C009168733BF9444407A8CF2CCCB3921C023DA8EA9BB9444407B4D0F0A4A3921C09DDA19A6B6944440C84274081C3921C056629E95B49444402E7079AC193921C0B69E211CB3944440E38DCC237F3821C0D653ABAFAE944440B05758703F3821C0D653ABAFAE944440B01D8CD8273821C096CCB1BCAB944440FDC0559E403821C0B056ED9A9094444016A243E0483821C01684F23E8E944440630B410E4A3821C0C32973F38D94444030664B56453821C0FDA204FD85944440'::geometry, (polyline)::geometry))
+Sort Method: top-N heapsort  Memory: 25kB
+Worker 0:  Sort Method: top-N heapsort  Memory: 25kB
+Worker 1:  Sort Method: top-N heapsort  Memory: 25kB
+->  Parallel Seq Scan on taxi_quad  (cost=0.00..9089854.00 rows=710320 width=8) (actual time=0.582..34093.208 rows=568256 loops=3)
+Planning Time: 0.107 ms
+Execution Time: 34128.138 ms
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 3.2.3
+* Test case index Quad tree
+*/
+
+        SELECT ST_HausdorffDistance(
+           	ST_GeomFromText('LINESTRING(-8.685234 41.166639,-8.685756 41.166837,-8.685963 41.166963,-8.685873 41.167008,-8.685207 41.166612,-8.684946 41.166846,-8.684874 41.167089,-8.684325 41.167125,-8.681346 41.166639,-8.678232 41.166126,-8.677602 41.166027,-8.674587 41.165532,-8.671752 41.165082,-8.671122 41.164938,-8.668395 41.164434,-8.665299 41.16393,-8.663517 41.163651,-8.663076 41.163624,-8.662122 41.163408,-8.659152 41.162904,-8.656038 41.162373,-8.652852 41.16186,-8.650269 41.161455,-8.650251 41.161428,-8.649927 41.161356,-8.647218 41.160906,-8.645652 41.160672,-8.643717 41.160375,-8.643312 41.160276,-8.643177 41.160267,-8.641908 41.160042,-8.641566 41.16006,-8.640675 41.160645,-8.639217 41.161329,-8.63874 41.161509,-8.63775 41.161878,-8.636265 41.162481,-8.634744 41.163165,-8.633502 41.16339,-8.632638 41.162247,-8.630928 41.162787,-8.628867 41.163642,-8.626473 41.163489,-8.625222 41.163381,-8.625249 41.163381,-8.625267 41.163372,-8.625051 41.163372,-8.622729 41.163093,-8.619966 41.162733,-8.617518 41.162481,-8.615664 41.162292,-8.613306 41.162085,-8.612883 41.161977,-8.611893 41.161824,-8.611542 41.161761,-8.611524 41.161716,-8.610345 41.161581,-8.609859 41.161581,-8.609679 41.161491,-8.609868 41.160663,-8.609931 41.160591,-8.60994 41.160582,-8.609904 41.160339)'),
+           	polyline::geometry
+        ) AS sim FROM taxi_quad
+        ORDER BY sim ASC
+        LIMIT 15
+        
+/**
+Outputs:
+-----------
+0
+0.000228211
+0.000237607
+0.000243
+0.000253105
+0.000274758
+0.000293115
+0.000295223
+0.000334093
+0.000340695
+0.000355449
+0.000504975
+0.000956078
+0.00102498
+0.00125565
+-----------
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Limit  (cost=9108281.34..9108283.09 rows=15 width=8) (actual time=33971.359..33972.679 rows=15 loops=1)
+->  Gather Merge  (cost=9108281.34..9274034.25 rows=1420640 width=8) (actual time=33971.359..33972.678 rows=15 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+->  Sort  (cost=9107281.32..9109057.12 rows=710320 width=8) (actual time=33962.229..33962.229 rows=12 loops=3)
+Sort Key: (st_hausdorffdistance('01020000003F000000EB36A8FDD65E21C07C9E3F6D54954440511212691B5F21C0A26131EA5A9544403788D68A365F21C02F52280B5F954440386BF0BE2A5F21C0CF15A5846095444005FBAF73D35E21C0828FC18A53954440520DFB3DB15E21C0F5BBB0355B954440ECC20FCEA75E21C0BB421F2C639544409FABADD85F5E21C008AC1C5A6495444055850662D95C21C07C9E3F6D549544408B338639415B21C0F581E49D439544408C683BA6EE5A21C062A06B5F409544400F9D9E77635921C082380F2730954440910BCEE0EF5721C042942F68219544409240834D9D5721C00FEF39B01C954440AE9E93DE375621C0DC2C5E2C0C9544407D1F0E12A25421C0A96A82A8FB94444019AE0E80B85321C0967A1684F294444066868DB27E5321C09C6B98A1F19444409AEC9FA7015321C0CFF3A78DEA9444409D2FF65E7C5121C09C31CC09DA944440D3DD7536E44F21C0706072A3C8944440A2410A9E424E21C0E94317D4B79444408B34F10EF04C21C04963B48EAA944440F261F6B2ED4C21C0505436ACA99444402593533BC34C21C0B6813B50A7944440DBC35E28604B21C076DD5B9198944440A93121E6924A21C003B16CE6909444402BC24D46954921C04A0C022B87944440AB3FC230604921C0B72A89EC839444402B14E97E4E4921C063D009A183944440E014562AA84821C043FE99417C9444407973B8567B4821C0EAB298D87C944440C7BAB88D064821C00AA2EE03909444402F185C73474721C0BD72BD6DA6944440494BE5ED084721C03D81B053AC9444404A0C022B874621C090F8156BB8944440CB2DAD86C44521C0569C6A2DCC94444019AA622AFD4421C0096D3997E2944440B4E6C75F5A4421C0293FA9F6E9944440E869C020E94321C0E36F7B82C4944440EA42ACFE084321C0639B5434D69444403811FDDAFA4121C043209738F29444406EA7AD11C14021C0BC202235ED944440BC7A15191D4021C0D6E429ABE9944440A2B60DA3204021C0D6E429ABE99444403B8908FF224021C0838AAA5FE994444008AA46AF064021C0838AAA5FE9944440A48AE255D63E21C0709A3E3BE09444408D43FD2E6C3D21C0707D586FD4944440F661BD512B3C21C0569C6A2DCC9444402BA6D24F383B21C08333F8FBC594444093E1783E033A21C009168733BF9444407A8CF2CCCB3921C023DA8EA9BB9444407B4D0F0A4A3921C09DDA19A6B6944440C84274081C3921C056629E95B49444402E7079AC193921C0B69E211CB3944440E38DCC237F3821C0D653ABAFAE944440B05758703F3821C0D653ABAFAE944440B01D8CD8273821C096CCB1BCAB944440FDC0559E403821C0B056ED9A9094444016A243E0483821C01684F23E8E944440630B410E4A3821C0C32973F38D94444030664B56453821C0FDA204FD85944440'::geometry, (polyline)::geometry))
+Sort Method: top-N heapsort  Memory: 26kB
+Worker 0:  Sort Method: top-N heapsort  Memory: 26kB
+Worker 1:  Sort Method: top-N heapsort  Memory: 26kB
+->  Parallel Seq Scan on taxi_quad  (cost=0.00..9089854.00 rows=710320 width=8) (actual time=0.649..33935.856 rows=568256 loops=3)
+Planning Time: 0.119 ms
+Execution Time: 33972.691 ms
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 3.3.1
+* Test case index No index
+*/
+
+        SELECT ST_HausdorffDistance(
+           	ST_GeomFromText('LINESTRING(-8.685234 41.166639,-8.685756 41.166837,-8.685963 41.166963,-8.685873 41.167008,-8.685207 41.166612,-8.684946 41.166846,-8.684874 41.167089,-8.684325 41.167125,-8.681346 41.166639,-8.678232 41.166126,-8.677602 41.166027,-8.674587 41.165532,-8.671752 41.165082,-8.671122 41.164938,-8.668395 41.164434,-8.665299 41.16393,-8.663517 41.163651,-8.663076 41.163624,-8.662122 41.163408,-8.659152 41.162904,-8.656038 41.162373,-8.652852 41.16186,-8.650269 41.161455,-8.650251 41.161428,-8.649927 41.161356,-8.647218 41.160906,-8.645652 41.160672,-8.643717 41.160375,-8.643312 41.160276,-8.643177 41.160267,-8.641908 41.160042,-8.641566 41.16006,-8.640675 41.160645,-8.639217 41.161329,-8.63874 41.161509,-8.63775 41.161878,-8.636265 41.162481,-8.634744 41.163165,-8.633502 41.16339,-8.632638 41.162247,-8.630928 41.162787,-8.628867 41.163642,-8.626473 41.163489,-8.625222 41.163381,-8.625249 41.163381,-8.625267 41.163372,-8.625051 41.163372,-8.622729 41.163093,-8.619966 41.162733,-8.617518 41.162481,-8.615664 41.162292,-8.613306 41.162085,-8.612883 41.161977,-8.611893 41.161824,-8.611542 41.161761,-8.611524 41.161716,-8.610345 41.161581,-8.609859 41.161581,-8.609679 41.161491,-8.609868 41.160663,-8.609931 41.160591,-8.60994 41.160582,-8.609904 41.160339)'),
+           	polyline::geometry
+        ) AS sim FROM taxi
+        ORDER BY sim ASC
+        LIMIT 5
+        
+/**
+Outputs:
+-----------
+0
+0.000228211
+0.000237607
+0.000243
+0.000253105
+-----------
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Limit  (cost=9082981.48..9082982.06 rows=5 width=8) (actual time=32940.264..32941.517 rows=5 loops=1)
+->  Gather Merge  (cost=9082981.48..9248368.03 rows=1417500 width=8) (actual time=32940.264..32941.516 rows=5 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+->  Sort  (cost=9081981.46..9083753.33 rows=708750 width=8) (actual time=32933.717..32933.717 rows=4 loops=3)
+Sort Key: (st_hausdorffdistance('01020000003F000000EB36A8FDD65E21C07C9E3F6D54954440511212691B5F21C0A26131EA5A9544403788D68A365F21C02F52280B5F954440386BF0BE2A5F21C0CF15A5846095444005FBAF73D35E21C0828FC18A53954440520DFB3DB15E21C0F5BBB0355B954440ECC20FCEA75E21C0BB421F2C639544409FABADD85F5E21C008AC1C5A6495444055850662D95C21C07C9E3F6D549544408B338639415B21C0F581E49D439544408C683BA6EE5A21C062A06B5F409544400F9D9E77635921C082380F2730954440910BCEE0EF5721C042942F68219544409240834D9D5721C00FEF39B01C954440AE9E93DE375621C0DC2C5E2C0C9544407D1F0E12A25421C0A96A82A8FB94444019AE0E80B85321C0967A1684F294444066868DB27E5321C09C6B98A1F19444409AEC9FA7015321C0CFF3A78DEA9444409D2FF65E7C5121C09C31CC09DA944440D3DD7536E44F21C0706072A3C8944440A2410A9E424E21C0E94317D4B79444408B34F10EF04C21C04963B48EAA944440F261F6B2ED4C21C0505436ACA99444402593533BC34C21C0B6813B50A7944440DBC35E28604B21C076DD5B9198944440A93121E6924A21C003B16CE6909444402BC24D46954921C04A0C022B87944440AB3FC230604921C0B72A89EC839444402B14E97E4E4921C063D009A183944440E014562AA84821C043FE99417C9444407973B8567B4821C0EAB298D87C944440C7BAB88D064821C00AA2EE03909444402F185C73474721C0BD72BD6DA6944440494BE5ED084721C03D81B053AC9444404A0C022B874621C090F8156BB8944440CB2DAD86C44521C0569C6A2DCC94444019AA622AFD4421C0096D3997E2944440B4E6C75F5A4421C0293FA9F6E9944440E869C020E94321C0E36F7B82C4944440EA42ACFE084321C0639B5434D69444403811FDDAFA4121C043209738F29444406EA7AD11C14021C0BC202235ED944440BC7A15191D4021C0D6E429ABE9944440A2B60DA3204021C0D6E429ABE99444403B8908FF224021C0838AAA5FE994444008AA46AF064021C0838AAA5FE9944440A48AE255D63E21C0709A3E3BE09444408D43FD2E6C3D21C0707D586FD4944440F661BD512B3C21C0569C6A2DCC9444402BA6D24F383B21C08333F8FBC594444093E1783E033A21C009168733BF9444407A8CF2CCCB3921C023DA8EA9BB9444407B4D0F0A4A3921C09DDA19A6B6944440C84274081C3921C056629E95B49444402E7079AC193921C0B69E211CB3944440E38DCC237F3821C0D653ABAFAE944440B05758703F3821C0D653ABAFAE944440B01D8CD8273821C096CCB1BCAB944440FDC0559E403821C0B056ED9A9094444016A243E0483821C01684F23E8E944440630B410E4A3821C0C32973F38D94444030664B56453821C0FDA204FD85944440'::geometry, (polyline)::geometry))
+Sort Method: top-N heapsort  Memory: 25kB
+Worker 0:  Sort Method: top-N heapsort  Memory: 25kB
+Worker 1:  Sort Method: top-N heapsort  Memory: 25kB
+->  Parallel Seq Scan on taxi  (cost=0.00..9070209.38 rows=708750 width=8) (actual time=0.159..32886.703 rows=568256 loops=3)
+Planning Time: 0.066 ms
+Execution Time: 32941.530 ms
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 3.3.2
+* Test case index No index
+*/
+
+        SELECT ST_HausdorffDistance(
+           	ST_GeomFromText('LINESTRING(-8.685234 41.166639,-8.685756 41.166837,-8.685963 41.166963,-8.685873 41.167008,-8.685207 41.166612,-8.684946 41.166846,-8.684874 41.167089,-8.684325 41.167125,-8.681346 41.166639,-8.678232 41.166126,-8.677602 41.166027,-8.674587 41.165532,-8.671752 41.165082,-8.671122 41.164938,-8.668395 41.164434,-8.665299 41.16393,-8.663517 41.163651,-8.663076 41.163624,-8.662122 41.163408,-8.659152 41.162904,-8.656038 41.162373,-8.652852 41.16186,-8.650269 41.161455,-8.650251 41.161428,-8.649927 41.161356,-8.647218 41.160906,-8.645652 41.160672,-8.643717 41.160375,-8.643312 41.160276,-8.643177 41.160267,-8.641908 41.160042,-8.641566 41.16006,-8.640675 41.160645,-8.639217 41.161329,-8.63874 41.161509,-8.63775 41.161878,-8.636265 41.162481,-8.634744 41.163165,-8.633502 41.16339,-8.632638 41.162247,-8.630928 41.162787,-8.628867 41.163642,-8.626473 41.163489,-8.625222 41.163381,-8.625249 41.163381,-8.625267 41.163372,-8.625051 41.163372,-8.622729 41.163093,-8.619966 41.162733,-8.617518 41.162481,-8.615664 41.162292,-8.613306 41.162085,-8.612883 41.161977,-8.611893 41.161824,-8.611542 41.161761,-8.611524 41.161716,-8.610345 41.161581,-8.609859 41.161581,-8.609679 41.161491,-8.609868 41.160663,-8.609931 41.160591,-8.60994 41.160582,-8.609904 41.160339)'),
+           	polyline::geometry
+        ) AS sim FROM taxi
+        ORDER BY sim ASC
+        LIMIT 10
+        
+/**
+Outputs:
+-----------
+0
+0.000228211
+0.000237607
+0.000243
+0.000253105
+0.000274758
+0.000293115
+0.000295223
+0.000334093
+0.000340695
+-----------
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Limit  (cost=9086525.23..9086526.40 rows=10 width=8) (actual time=32848.232..32850.549 rows=10 loops=1)
+->  Gather Merge  (cost=9086525.23..9251911.78 rows=1417500 width=8) (actual time=32848.230..32850.548 rows=10 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+->  Sort  (cost=9085525.21..9087297.08 rows=708750 width=8) (actual time=32840.036..32840.038 rows=8 loops=3)
+Sort Key: (st_hausdorffdistance('01020000003F000000EB36A8FDD65E21C07C9E3F6D54954440511212691B5F21C0A26131EA5A9544403788D68A365F21C02F52280B5F954440386BF0BE2A5F21C0CF15A5846095444005FBAF73D35E21C0828FC18A53954440520DFB3DB15E21C0F5BBB0355B954440ECC20FCEA75E21C0BB421F2C639544409FABADD85F5E21C008AC1C5A6495444055850662D95C21C07C9E3F6D549544408B338639415B21C0F581E49D439544408C683BA6EE5A21C062A06B5F409544400F9D9E77635921C082380F2730954440910BCEE0EF5721C042942F68219544409240834D9D5721C00FEF39B01C954440AE9E93DE375621C0DC2C5E2C0C9544407D1F0E12A25421C0A96A82A8FB94444019AE0E80B85321C0967A1684F294444066868DB27E5321C09C6B98A1F19444409AEC9FA7015321C0CFF3A78DEA9444409D2FF65E7C5121C09C31CC09DA944440D3DD7536E44F21C0706072A3C8944440A2410A9E424E21C0E94317D4B79444408B34F10EF04C21C04963B48EAA944440F261F6B2ED4C21C0505436ACA99444402593533BC34C21C0B6813B50A7944440DBC35E28604B21C076DD5B9198944440A93121E6924A21C003B16CE6909444402BC24D46954921C04A0C022B87944440AB3FC230604921C0B72A89EC839444402B14E97E4E4921C063D009A183944440E014562AA84821C043FE99417C9444407973B8567B4821C0EAB298D87C944440C7BAB88D064821C00AA2EE03909444402F185C73474721C0BD72BD6DA6944440494BE5ED084721C03D81B053AC9444404A0C022B874621C090F8156BB8944440CB2DAD86C44521C0569C6A2DCC94444019AA622AFD4421C0096D3997E2944440B4E6C75F5A4421C0293FA9F6E9944440E869C020E94321C0E36F7B82C4944440EA42ACFE084321C0639B5434D69444403811FDDAFA4121C043209738F29444406EA7AD11C14021C0BC202235ED944440BC7A15191D4021C0D6E429ABE9944440A2B60DA3204021C0D6E429ABE99444403B8908FF224021C0838AAA5FE994444008AA46AF064021C0838AAA5FE9944440A48AE255D63E21C0709A3E3BE09444408D43FD2E6C3D21C0707D586FD4944440F661BD512B3C21C0569C6A2DCC9444402BA6D24F383B21C08333F8FBC594444093E1783E033A21C009168733BF9444407A8CF2CCCB3921C023DA8EA9BB9444407B4D0F0A4A3921C09DDA19A6B6944440C84274081C3921C056629E95B49444402E7079AC193921C0B69E211CB3944440E38DCC237F3821C0D653ABAFAE944440B05758703F3821C0D653ABAFAE944440B01D8CD8273821C096CCB1BCAB944440FDC0559E403821C0B056ED9A9094444016A243E0483821C01684F23E8E944440630B410E4A3821C0C32973F38D94444030664B56453821C0FDA204FD85944440'::geometry, (polyline)::geometry))
+Sort Method: top-N heapsort  Memory: 25kB
+Worker 0:  Sort Method: top-N heapsort  Memory: 25kB
+Worker 1:  Sort Method: top-N heapsort  Memory: 25kB
+->  Parallel Seq Scan on taxi  (cost=0.00..9070209.38 rows=708750 width=8) (actual time=0.164..32810.816 rows=568256 loops=3)
+Planning Time: 0.050 ms
+Execution Time: 32850.563 ms
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 3.3.3
+* Test case index No index
+*/
+
+        SELECT ST_HausdorffDistance(
+           	ST_GeomFromText('LINESTRING(-8.685234 41.166639,-8.685756 41.166837,-8.685963 41.166963,-8.685873 41.167008,-8.685207 41.166612,-8.684946 41.166846,-8.684874 41.167089,-8.684325 41.167125,-8.681346 41.166639,-8.678232 41.166126,-8.677602 41.166027,-8.674587 41.165532,-8.671752 41.165082,-8.671122 41.164938,-8.668395 41.164434,-8.665299 41.16393,-8.663517 41.163651,-8.663076 41.163624,-8.662122 41.163408,-8.659152 41.162904,-8.656038 41.162373,-8.652852 41.16186,-8.650269 41.161455,-8.650251 41.161428,-8.649927 41.161356,-8.647218 41.160906,-8.645652 41.160672,-8.643717 41.160375,-8.643312 41.160276,-8.643177 41.160267,-8.641908 41.160042,-8.641566 41.16006,-8.640675 41.160645,-8.639217 41.161329,-8.63874 41.161509,-8.63775 41.161878,-8.636265 41.162481,-8.634744 41.163165,-8.633502 41.16339,-8.632638 41.162247,-8.630928 41.162787,-8.628867 41.163642,-8.626473 41.163489,-8.625222 41.163381,-8.625249 41.163381,-8.625267 41.163372,-8.625051 41.163372,-8.622729 41.163093,-8.619966 41.162733,-8.617518 41.162481,-8.615664 41.162292,-8.613306 41.162085,-8.612883 41.161977,-8.611893 41.161824,-8.611542 41.161761,-8.611524 41.161716,-8.610345 41.161581,-8.609859 41.161581,-8.609679 41.161491,-8.609868 41.160663,-8.609931 41.160591,-8.60994 41.160582,-8.609904 41.160339)'),
+           	polyline::geometry
+        ) AS sim FROM taxi
+        ORDER BY sim ASC
+        LIMIT 15
+        
+/**
+Outputs:
+-----------
+0
+0.000228211
+0.000237607
+0.000243
+0.000253105
+0.000274758
+0.000293115
+0.000295223
+0.000334093
+0.000340695
+0.000355449
+0.000504975
+0.000956078
+0.00102498
+0.00125565
+-----------
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Limit  (cost=9088598.19..9088599.94 rows=15 width=8) (actual time=32736.754..32738.604 rows=15 loops=1)
+->  Gather Merge  (cost=9088598.19..9253984.74 rows=1417500 width=8) (actual time=32736.753..32738.601 rows=15 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+->  Sort  (cost=9087598.17..9089370.04 rows=708750 width=8) (actual time=32730.072..32730.073 rows=12 loops=3)
+Sort Key: (st_hausdorffdistance('01020000003F000000EB36A8FDD65E21C07C9E3F6D54954440511212691B5F21C0A26131EA5A9544403788D68A365F21C02F52280B5F954440386BF0BE2A5F21C0CF15A5846095444005FBAF73D35E21C0828FC18A53954440520DFB3DB15E21C0F5BBB0355B954440ECC20FCEA75E21C0BB421F2C639544409FABADD85F5E21C008AC1C5A6495444055850662D95C21C07C9E3F6D549544408B338639415B21C0F581E49D439544408C683BA6EE5A21C062A06B5F409544400F9D9E77635921C082380F2730954440910BCEE0EF5721C042942F68219544409240834D9D5721C00FEF39B01C954440AE9E93DE375621C0DC2C5E2C0C9544407D1F0E12A25421C0A96A82A8FB94444019AE0E80B85321C0967A1684F294444066868DB27E5321C09C6B98A1F19444409AEC9FA7015321C0CFF3A78DEA9444409D2FF65E7C5121C09C31CC09DA944440D3DD7536E44F21C0706072A3C8944440A2410A9E424E21C0E94317D4B79444408B34F10EF04C21C04963B48EAA944440F261F6B2ED4C21C0505436ACA99444402593533BC34C21C0B6813B50A7944440DBC35E28604B21C076DD5B9198944440A93121E6924A21C003B16CE6909444402BC24D46954921C04A0C022B87944440AB3FC230604921C0B72A89EC839444402B14E97E4E4921C063D009A183944440E014562AA84821C043FE99417C9444407973B8567B4821C0EAB298D87C944440C7BAB88D064821C00AA2EE03909444402F185C73474721C0BD72BD6DA6944440494BE5ED084721C03D81B053AC9444404A0C022B874621C090F8156BB8944440CB2DAD86C44521C0569C6A2DCC94444019AA622AFD4421C0096D3997E2944440B4E6C75F5A4421C0293FA9F6E9944440E869C020E94321C0E36F7B82C4944440EA42ACFE084321C0639B5434D69444403811FDDAFA4121C043209738F29444406EA7AD11C14021C0BC202235ED944440BC7A15191D4021C0D6E429ABE9944440A2B60DA3204021C0D6E429ABE99444403B8908FF224021C0838AAA5FE994444008AA46AF064021C0838AAA5FE9944440A48AE255D63E21C0709A3E3BE09444408D43FD2E6C3D21C0707D586FD4944440F661BD512B3C21C0569C6A2DCC9444402BA6D24F383B21C08333F8FBC594444093E1783E033A21C009168733BF9444407A8CF2CCCB3921C023DA8EA9BB9444407B4D0F0A4A3921C09DDA19A6B6944440C84274081C3921C056629E95B49444402E7079AC193921C0B69E211CB3944440E38DCC237F3821C0D653ABAFAE944440B05758703F3821C0D653ABAFAE944440B01D8CD8273821C096CCB1BCAB944440FDC0559E403821C0B056ED9A9094444016A243E0483821C01684F23E8E944440630B410E4A3821C0C32973F38D94444030664B56453821C0FDA204FD85944440'::geometry, (polyline)::geometry))
+Sort Method: top-N heapsort  Memory: 26kB
+Worker 0:  Sort Method: top-N heapsort  Memory: 26kB
+Worker 1:  Sort Method: top-N heapsort  Memory: 26kB
+->  Parallel Seq Scan on taxi  (cost=0.00..9070209.38 rows=708750 width=8) (actual time=0.169..32703.019 rows=568256 loops=3)
+Planning Time: 0.066 ms
+Execution Time: 32738.619 ms
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
