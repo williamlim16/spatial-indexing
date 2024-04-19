@@ -5,9 +5,12 @@ import logging
 from alive_progress.animations.bars import bar_factory
 from alive_progress.core.progress import config_handler
 from tabulate import tabulate
+from generate import generate_report
 from template import TemplateOutput
 from test_cases import test_cases
 from alive_progress import alive_bar
+import sys
+from os import system
 
 
 def init_database():
@@ -18,32 +21,58 @@ def init_database():
     return cursor
 
 
-cursor = init_database()
+def display_menu(menu):
+    for k, function in menu.items():
+        print(k, function.__name__)
 
-output_file = "output.sql"
-bar = bar_factory("🔥", tip="🌟")
-logging.basicConfig(level=logging.INFO)
 
-with open(output_file, "w+") as f:
-    with alive_bar(len(test_cases), bar=bar, spinner="fish") as bar:
-        for test in test_cases:
-            cursor.execute(test["query"])
-            q_res = cursor.fetchall()
-            q_res = tabulate(q_res)
-            cursor.execute("EXPLAIN ANALYZE " + test["query"])
-            q_analyze = cursor.fetchall()
-            q_analyze = tabulate(q_analyze)
-            template_output = TemplateOutput(
-                query=test["query"],
-                query_result=q_res,
-                query_analyze=q_analyze,
-                test_case=test["test_case"],
-                test_case_index=test["test_case_index"],
-            )
-            # print(template_output.return_format())
-            f.write(template_output.return_format())
-            logging.info(f"Test Case: {test['test_case']}")
-            bar()
+def gen_report(cursor):
+    print("Generating report...")  # Simulate function output.
+    print("0. For all report")  # Simulate function output.
+    print("1. For test case 1")  # Simulate function output.
+    print("2. For test case 2")  # Simulate function output.
+    print("3. For test case 3")  # Simulate function output.
+    selection = int(input("Please enter your selection number: "))
+    system("clear")  # clears stdout
+    if selection == 0 or selection == None:
+        generate_report(cursor=cursor, case=None)
+    elif selection == 1:
+        generate_report(cursor=cursor, case=1)
+    elif selection == 2:
+        generate_report(cursor=cursor, case=2)
+    elif selection == 3:
+        generate_report(cursor=cursor, case=3)
+    else:
+        print("Invalid option!")
+        system("clear")
+        main()
+
+
+def perf_testing(cursor):
+    print("you have selected menu option two")
+    input("Press Enter to Continue\n")
+    system("clear")
+
+
+def done(cursor):
+    system("clear")
+    print("Goodbye")
+    sys.exit()
+
+
+def main():
+    functions_names = [gen_report, perf_testing, done]
+    menu_items = dict(enumerate(functions_names, start=1))
+    cursor = init_database()
+
+    while True:
+        display_menu(menu_items)
+        selection = int(input("Please enter your selection number: "))
+        selected_value = menu_items[selection]
+        selected_value(cursor)
+
+
+main()
 
 # planning = 0
 # execution = 0
