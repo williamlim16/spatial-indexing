@@ -27,13 +27,13 @@ def display_menu(menu):
 
 
 def gen_report(cursor):
-    print("Generating report...")  # Simulate function output.
-    print("0. For all report")  # Simulate function output.
-    print("1. For test case 1")  # Simulate function output.
-    print("2. For test case 2")  # Simulate function output.
-    print("3. For test case 3")  # Simulate function output.
+    print("Generating report...")
+    print("0. For all report")
+    print("1. For test case 1")
+    print("2. For test case 2")
+    print("3. For test case 3")
     selection = int(input("Please enter your selection number: "))
-    system("clear")  # clears stdout
+    system("clear")
     repetition = 5
     if selection == 0 or selection == None:
         generate_report(cursor=cursor, case=None, repetition=repetition)
@@ -46,7 +46,7 @@ def gen_report(cursor):
     else:
         print("Invalid option!")
         system("clear")
-        main()
+        gen_report(cursor)
 
 
 def perf_testing(cursor):
