@@ -6,6 +6,7 @@ from alive_progress.animations.bars import bar_factory
 from alive_progress.core.progress import config_handler
 from tabulate import tabulate
 from generate import generate_report
+from performance import performance_test
 from template import TemplateOutput
 from test_cases import test_cases
 from alive_progress import alive_bar
@@ -33,8 +34,8 @@ def gen_report(cursor):
     print("2. For test case 2")
     print("3. For test case 3")
     selection = int(input("Please enter your selection number: "))
+    repetition = int(input("Please input repetition needed: "))
     system("clear")
-    repetition = 5
     if selection == 0 or selection == None:
         generate_report(cursor=cursor, case=None, repetition=repetition)
     elif selection == 1:
@@ -50,9 +51,20 @@ def gen_report(cursor):
 
 
 def perf_testing(cursor):
-    print("you have selected menu option two")
-    input("Press Enter to Continue\n")
     system("clear")
+    selection = int(input("Please enter your selection number: "))
+    repetition = int(input("Please input repetition needed: "))
+    if selection == 0 or selection == None:
+        performance_test(cursor, case=None, repetition=repetition)
+    elif selection == 1:
+        performance_test(cursor, case=1, repetition=repetition)
+    elif selection == 2:
+        performance_test(cursor, case=2, repetition=repetition)
+    elif selection == 3:
+        performance_test(cursor, case=3, repetition=repetition)
+    else:
+        print("Invalid option!")
+    print("Performance testing")
 
 
 def done(cursor):
