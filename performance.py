@@ -19,6 +19,8 @@ def performance_test(cursor, case: int | None, repetition: int):
                 continue
             if case == 3 and test["test_case"][0] != "3":
                 continue
+            if case == 4 and test["test_case"][0] != "4":
+                continue
 
             for rep in range(repetition):
                 cursor.execute("EXPLAIN (BUFFERS, ANALYZE) " + test["query"])

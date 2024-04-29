@@ -334,4 +334,157 @@ test_cases = [
         LIMIT 15
         """,
     },
+    {
+        "test_case": "4.1.1",
+        "query_task": "Average time spent from airport to the most popular hotel",
+        "test_case_index": "R-tree",
+        "query": """
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_rtree, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_rtree.end_point, 10) AND trip_id IN (
+            SELECT trip_id 
+            FROM taxi_rtree
+            WHERE ST_DWithin(taxi_rtree.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3000)
+        )
+        """,
+    },
+    {
+        "test_case": "4.1.2",
+        "query_task": "Average time spent from airport to the most popular hotel",
+        "test_case_index": "R-tree",
+        "query": """
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_rtree, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_rtree.end_point, 10) AND trip_id IN (
+            SELECT trip_id 
+            FROM taxi_rtree
+            WHERE ST_DWithin(taxi_rtree.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3100)
+        )
+        """,
+    },
+    {
+        "test_case": "4.1.3",
+        "query_task": "Average time spent from airport to the most popular hotel",
+        "test_case_index": "R-tree",
+        "query": """
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_rtree, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_rtree.end_point, 10) AND trip_id IN (
+            SELECT trip_id 
+            FROM taxi_rtree
+            WHERE ST_DWithin(taxi_rtree.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3150)
+        )
+        """,
+    },
+    {
+        "test_case": "4.2.1",
+        "query_task": "Average time spent from airport to the most popular hotel",
+        "test_case_index": "Quad tree",
+        "query": """
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_quad, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_quad.end_point, 10) AND trip_id IN (
+            SELECT trip_id 
+            FROM taxi_quad
+            WHERE ST_DWithin(taxi_quad.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3000)
+        )
+        """,
+    },
+    {
+        "test_case": "4.2.2",
+        "query_task": "Average time spent from airport to the most popular hotel",
+        "test_case_index": "Quad tree",
+        "query": """
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_quad, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_quad.end_point, 10) AND trip_id IN (
+            SELECT trip_id 
+            FROM taxi_quad
+            WHERE ST_DWithin(taxi_quad.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3100)
+        )
+        """
+    },
+    {
+        "test_case": "4.2.3",
+        "query_task": "Average time spent from airport to the most popular hotel",
+        "test_case_index": "Quad tree",
+        "query": """
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_quad, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_quad.end_point, 10) AND trip_id IN (
+            SELECT trip_id 
+            FROM taxi_quad
+            WHERE ST_DWithin(taxi_quad.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3150)
+        )
+        """,
+    },
+    {
+        "test_case": "4.3.1",
+        "query_task": "Average time spent from airport to the most popular hotel",
+        "test_case_index": "No index",
+        "query": """
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi.end_point, 10) AND trip_id IN (
+            SELECT trip_id 
+            FROM taxi
+            WHERE ST_DWithin(taxi.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3000)
+        )
+        """,
+    },
+    {
+        "test_case": "4.3.2",
+        "query_task": "Average time spent from airport to the most popular hotel",
+        "test_case_index": "No index",
+        "query": """
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi.end_point, 10) AND trip_id IN (
+            SELECT trip_id 
+            FROM taxi
+            WHERE ST_DWithin(taxi.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3100)
+        )
+        """,
+    },
+    {
+        "test_case": "4.3.3",
+        "query_task": "Average time spent from airport to the most popular hotel",
+        "test_case_index": "No index",
+        "query": """
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi.end_point, 10) AND trip_id IN (
+            SELECT trip_id 
+            FROM taxi
+            WHERE ST_DWithin(taxi.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3150)
+        )
+        """,
+    }
 ]

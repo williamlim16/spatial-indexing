@@ -14,15 +14,19 @@ def generate_report(cursor, case: int | None, repetition: int):
     bar_length = len(test_cases * repetition)
     if case == 1:
         output_file = "1_out.sql"
-        bar_length = bar_length / 3
+        bar_length = bar_length / 4
 
     if case == 2:
         output_file = "2_out.sql"
-        bar_length = bar_length / 3
+        bar_length = bar_length / 4
 
     if case == 3:
         output_file = "3_out.sql"
-        bar_length = bar_length / 3
+        bar_length = bar_length / 4
+
+    if case == 4:
+        output_file = "4_out.sql"
+        bar_length = bar_length / 4
 
     with open(output_file, "w+") as f:
         with alive_bar(int(bar_length), bar=bar, spinner="fish") as bar:
@@ -34,6 +38,9 @@ def generate_report(cursor, case: int | None, repetition: int):
                     continue
 
                 if case == 3 and test["test_case"][0] != "3":
+                    continue
+
+                if case == 4 and test["test_case"][0] != "4":
                     continue
 
                 for rep in range(repetition):

@@ -8,7 +8,7 @@
         WHERE ST_DWithin(
         ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'),
         start_point, 3000)
-        
+
 /**
 Outputs:
 ----
@@ -35,7 +35,7 @@ Execution Time: 7.747 ms
         WHERE ST_DWithin(
         ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'),
         start_point, 3100)
-        
+
 /**
 Outputs:
 ----
@@ -62,7 +62,7 @@ Execution Time: 3.386 ms
         WHERE ST_DWithin(
         ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'),
         start_point, 3150)
-        
+
 /**
 Outputs:
 ----
@@ -89,7 +89,7 @@ Execution Time: 3.249 ms
         WHERE ST_DWithin(
         ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'),
         start_point, 3000)
-        
+
 /**
 Outputs:
 ----
@@ -122,7 +122,7 @@ Execution Time: 112.566 ms
         WHERE ST_DWithin(
         ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'),
         start_point, 3100)
-        
+
 /**
 Outputs:
 ----
@@ -155,7 +155,7 @@ Execution Time: 119.347 ms
         WHERE ST_DWithin(
         ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'),
         start_point, 3150)
-        
+
 /**
 Outputs:
 ----
@@ -188,7 +188,7 @@ Execution Time: 110.453 ms
         WHERE ST_DWithin(
         ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'),
         start_point, 3000)
-        
+
 /**
 Outputs:
 ----
@@ -221,7 +221,7 @@ Execution Time: 109.348 ms
         WHERE ST_DWithin(
         ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'),
         start_point, 3100)
-        
+
 /**
 Outputs:
 ----
@@ -254,7 +254,7 @@ Execution Time: 109.881 ms
         WHERE ST_DWithin(
         ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'),
         start_point, 3150)
-        
+
 /**
 Outputs:
 ----
@@ -289,7 +289,7 @@ Execution Time: 109.556 ms
           taxi_rtree.end_point, 1)
         GROUP BY hotel
         ORDER BY count DESC
-        
+
 /**
 Outputs:
 ----------------------  --
@@ -328,7 +328,7 @@ Execution Time: 3.885 ms
           taxi_rtree.end_point, 3)
         GROUP BY hotel
         ORDER BY count DESC
-        
+
 /**
 Outputs:
 ----------------------  ---
@@ -374,7 +374,7 @@ Execution Time: 4.536 ms
           taxi_rtree.end_point, 5)
         GROUP BY hotel
         ORDER BY count DESC
-        
+
 /**
 Outputs:
 -----------------------------------  ---
@@ -422,7 +422,7 @@ Execution Time: 5.306 ms
             taxi_quad.end_point, 1)
         GROUP BY hotel
         ORDER BY count DESC
-        
+
 /**
 Outputs:
 ----------------------  --
@@ -461,7 +461,7 @@ Execution Time: 1508.852 ms
             taxi_quad.end_point, 3)
         GROUP BY hotel
         ORDER BY count DESC
-        
+
 /**
 Outputs:
 ----------------------  ---
@@ -507,7 +507,7 @@ Execution Time: 1481.631 ms
             taxi_quad.end_point, 5)
         GROUP BY hotel
         ORDER BY count DESC
-        
+
 /**
 Outputs:
 -----------------------------------  ---
@@ -555,7 +555,7 @@ Execution Time: 1475.293 ms
             taxi.end_point, 1)
         GROUP BY hotel
         ORDER BY count DESC
-        
+
 /**
 Outputs:
 ----------------------  --
@@ -602,7 +602,7 @@ Execution Time: 6960.669 ms
             taxi.end_point, 3)
         GROUP BY hotel
         ORDER BY count DESC
-        
+
 /**
 Outputs:
 ----------------------  ---
@@ -656,7 +656,7 @@ Execution Time: 6954.335 ms
             taxi.end_point, 5)
         GROUP BY hotel
         ORDER BY count DESC
-        
+
 /**
 Outputs:
 -----------------------------------  ---
@@ -712,7 +712,7 @@ Execution Time: 6947.394 ms
         ) AS sim FROM taxi_rtree
         ORDER BY sim ASC
         LIMIT 5
-        
+
 /**
 Outputs:
 -----------
@@ -750,7 +750,7 @@ Execution Time: 34143.791 ms
         ) AS sim FROM taxi_rtree
         ORDER BY sim ASC
         LIMIT 10
-        
+
 /**
 Outputs:
 -----------
@@ -793,7 +793,7 @@ Execution Time: 32117.536 ms
         ) AS sim FROM taxi_rtree
         ORDER BY sim ASC
         LIMIT 15
-        
+
 /**
 Outputs:
 -----------
@@ -841,7 +841,7 @@ Execution Time: 31588.049 ms
         ) AS sim FROM taxi_quad
         ORDER BY sim ASC
         LIMIT 5
-        
+
 /**
 Outputs:
 -----------
@@ -879,7 +879,7 @@ Execution Time: 33096.235 ms
         ) AS sim FROM taxi_quad
         ORDER BY sim ASC
         LIMIT 10
-        
+
 /**
 Outputs:
 -----------
@@ -922,7 +922,7 @@ Execution Time: 34128.138 ms
         ) AS sim FROM taxi_quad
         ORDER BY sim ASC
         LIMIT 15
-        
+
 /**
 Outputs:
 -----------
@@ -970,7 +970,7 @@ Execution Time: 33972.691 ms
         ) AS sim FROM taxi
         ORDER BY sim ASC
         LIMIT 5
-        
+
 /**
 Outputs:
 -----------
@@ -1008,7 +1008,7 @@ Execution Time: 32941.530 ms
         ) AS sim FROM taxi
         ORDER BY sim ASC
         LIMIT 10
-        
+
 /**
 Outputs:
 -----------
@@ -1051,7 +1051,7 @@ Execution Time: 32850.563 ms
         ) AS sim FROM taxi
         ORDER BY sim ASC
         LIMIT 15
-        
+
 /**
 Outputs:
 -----------
@@ -1086,4 +1086,542 @@ Worker 1:  Sort Method: top-N heapsort  Memory: 26kB
 Planning Time: 0.066 ms
 Execution Time: 32738.619 ms
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+
+/**
+* Test Case 4.1.1
+* Test case index R-tree
+*/
+
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_rtree, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_rtree.end_point, 10) AND trip_id IN (
+            SELECT trip_id
+            FROM taxi_rtree
+            WHERE ST_DWithin(taxi_rtree.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3000)
+        )
+
+/**
+Outputs:
+----
+1350
+----
+Query Plan:
+----------------------------------------------------------------------------------------------------------------------------------------------
+Aggregate  (cost=2847.25..2847.27 rows=1 width=32) (actual time=8.194..8.195 rows=1 loops=1)
+Buffers: shared hit=7727
+->  Hash Join  (cost=24.96..2847.12 rows=1 width=821) (actual time=7.231..8.188 rows=5 loops=1)
+Hash Cond: (taxi_rtree.trip_id = taxi_rtree_1.trip_id)
+Buffers: shared hit=7727
+->  Nested Loop  (cost=1.78..2819.46 rows=1705 width=834) (actual time=0.071..2.188 rows=1524 loops=1)
+Buffers: shared hit=2313
+->  Limit  (cost=1.24..1.24 rows=1 width=64) (actual time=0.015..0.015 rows=1 loops=1)
+Buffers: shared hit=1
+->  Sort  (cost=1.24..1.28 rows=16 width=64) (actual time=0.014..0.014 rows=1 loops=1)
+Sort Key: hotels.popularity DESC
+Sort Method: top-N heapsort  Memory: 25kB
+Buffers: shared hit=1
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=64) (actual time=0.004..0.005 rows=16 loops=1)
+Buffers: shared hit=1
+->  Index Scan using end_rtree on taxi_rtree  (cost=0.54..2816.51 rows=170 width=866) (actual time=0.054..2.114 rows=1524 loops=1)
+Index Cond: (end_point && _st_expand(hotels.geom, '10'::double precision))
+Filter: st_dwithin(hotels.geom, end_point, '10'::double precision, true)
+Rows Removed by Filter: 659
+Buffers: shared hit=2312
+->  Hash  (cost=21.05..21.05 rows=170 width=13) (actual time=5.878..5.878 rows=4789 loops=1)
+Buckets: 8192 (originally 1024)  Batches: 1 (originally 1)  Memory Usage: 275kB
+Buffers: shared hit=5414
+->  Index Scan using start_rtree on taxi_rtree taxi_rtree_1  (cost=0.54..21.05 rows=170 width=13) (actual time=0.053..5.513 rows=4789 loops=1)
+Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3000'::double precision))
+Filter: st_dwithin(start_point, '0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3000'::double precision, true)
+Rows Removed by Filter: 476
+Buffers: shared hit=5414
+Planning:
+Buffers: shared hit=16
+Planning Time: 11.912 ms
+Execution Time: 8.233 ms
+----------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 4.1.2
+* Test case index R-tree
+*/
+
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_rtree, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_rtree.end_point, 10) AND trip_id IN (
+            SELECT trip_id
+            FROM taxi_rtree
+            WHERE ST_DWithin(taxi_rtree.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3100)
+        )
+
+/**
+Outputs:
+----
+1350
+----
+Query Plan:
+----------------------------------------------------------------------------------------------------------------------------------------------
+Aggregate  (cost=2847.25..2847.27 rows=1 width=32) (actual time=5.209..5.210 rows=1 loops=1)
+Buffers: shared hit=7819
+->  Hash Join  (cost=24.96..2847.12 rows=1 width=821) (actual time=4.429..5.203 rows=5 loops=1)
+Hash Cond: (taxi_rtree.trip_id = taxi_rtree_1.trip_id)
+Buffers: shared hit=7819
+->  Nested Loop  (cost=1.78..2819.46 rows=1705 width=834) (actual time=0.042..1.657 rows=1524 loops=1)
+Buffers: shared hit=2313
+->  Limit  (cost=1.24..1.24 rows=1 width=64) (actual time=0.007..0.008 rows=1 loops=1)
+Buffers: shared hit=1
+->  Sort  (cost=1.24..1.28 rows=16 width=64) (actual time=0.007..0.007 rows=1 loops=1)
+Sort Key: hotels.popularity DESC
+Sort Method: top-N heapsort  Memory: 25kB
+Buffers: shared hit=1
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=64) (actual time=0.003..0.004 rows=16 loops=1)
+Buffers: shared hit=1
+->  Index Scan using end_rtree on taxi_rtree  (cost=0.54..2816.51 rows=170 width=866) (actual time=0.034..1.591 rows=1524 loops=1)
+Index Cond: (end_point && _st_expand(hotels.geom, '10'::double precision))
+Filter: st_dwithin(hotels.geom, end_point, '10'::double precision, true)
+Rows Removed by Filter: 659
+Buffers: shared hit=2312
+->  Hash  (cost=21.05..21.05 rows=170 width=13) (actual time=3.421..3.422 rows=4830 loops=1)
+Buckets: 8192 (originally 1024)  Batches: 1 (originally 1)  Memory Usage: 277kB
+Buffers: shared hit=5506
+->  Index Scan using start_rtree on taxi_rtree taxi_rtree_1  (cost=0.54..21.05 rows=170 width=13) (actual time=0.060..3.064 rows=4830 loops=1)
+Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3100'::double precision))
+Filter: st_dwithin(start_point, '0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3100'::double precision, true)
+Rows Removed by Filter: 522
+Buffers: shared hit=5506
+Planning:
+Buffers: shared hit=16
+Planning Time: 0.448 ms
+Execution Time: 5.224 ms
+----------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 4.1.3
+* Test case index R-tree
+*/
+
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_rtree, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_rtree.end_point, 10) AND trip_id IN (
+            SELECT trip_id
+            FROM taxi_rtree
+            WHERE ST_DWithin(taxi_rtree.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3150)
+        )
+
+/**
+Outputs:
+----
+1350
+----
+Query Plan:
+----------------------------------------------------------------------------------------------------------------------------------------------
+Aggregate  (cost=2847.25..2847.27 rows=1 width=32) (actual time=5.162..5.163 rows=1 loops=1)
+Buffers: shared hit=7850
+->  Hash Join  (cost=24.96..2847.12 rows=1 width=821) (actual time=4.313..5.155 rows=5 loops=1)
+Hash Cond: (taxi_rtree.trip_id = taxi_rtree_1.trip_id)
+Buffers: shared hit=7850
+->  Nested Loop  (cost=1.78..2819.46 rows=1705 width=834) (actual time=0.036..1.741 rows=1524 loops=1)
+Buffers: shared hit=2313
+->  Limit  (cost=1.24..1.24 rows=1 width=64) (actual time=0.005..0.005 rows=1 loops=1)
+Buffers: shared hit=1
+->  Sort  (cost=1.24..1.28 rows=16 width=64) (actual time=0.005..0.005 rows=1 loops=1)
+Sort Key: hotels.popularity DESC
+Sort Method: top-N heapsort  Memory: 25kB
+Buffers: shared hit=1
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=64) (actual time=0.002..0.003 rows=16 loops=1)
+Buffers: shared hit=1
+->  Index Scan using end_rtree on taxi_rtree  (cost=0.54..2816.51 rows=170 width=866) (actual time=0.030..1.679 rows=1524 loops=1)
+Index Cond: (end_point && _st_expand(hotels.geom, '10'::double precision))
+Filter: st_dwithin(hotels.geom, end_point, '10'::double precision, true)
+Rows Removed by Filter: 659
+Buffers: shared hit=2312
+->  Hash  (cost=21.05..21.05 rows=170 width=13) (actual time=3.290..3.290 rows=4871 loops=1)
+Buckets: 8192 (originally 1024)  Batches: 1 (originally 1)  Memory Usage: 279kB
+Buffers: shared hit=5537
+->  Index Scan using start_rtree on taxi_rtree taxi_rtree_1  (cost=0.54..21.05 rows=170 width=13) (actual time=0.064..2.914 rows=4871 loops=1)
+Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3150'::double precision))
+Filter: st_dwithin(start_point, '0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3150'::double precision, true)
+Rows Removed by Filter: 510
+Buffers: shared hit=5537
+Planning:
+Buffers: shared hit=16
+Planning Time: 0.348 ms
+Execution Time: 5.174 ms
+----------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 4.2.1
+* Test case index Quad tree
+*/
+
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_quad, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_quad.end_point, 10) AND trip_id IN (
+            SELECT trip_id
+            FROM taxi_quad
+            WHERE ST_DWithin(taxi_quad.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3000)
+        )
+
+/**
+Outputs:
+----
+1350
+----
+Query Plan:
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Aggregate  (cost=50184.99..50185.00 rows=1 width=32) (actual time=252.685..252.742 rows=1 loops=1)
+Buffers: shared hit=90731 read=38494
+->  Hash Semi Join  (cost=47362.69..50184.86 rows=1 width=825) (actual time=247.093..252.733 rows=5 loops=1)
+Hash Cond: (taxi_quad.trip_id = taxi_quad_1.trip_id)
+Buffers: shared hit=90731 read=38494
+->  Nested Loop  (cost=1.78..2819.46 rows=1705 width=838) (actual time=98.821..124.913 rows=1524 loops=1)
+Buffers: shared hit=48167 read=16983
+->  Limit  (cost=1.24..1.24 rows=1 width=64) (actual time=0.009..0.010 rows=1 loops=1)
+Buffers: shared read=1
+->  Sort  (cost=1.24..1.28 rows=16 width=64) (actual time=0.009..0.009 rows=1 loops=1)
+Sort Key: hotels.popularity DESC
+Sort Method: top-N heapsort  Memory: 25kB
+Buffers: shared read=1
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=64) (actual time=0.004..0.005 rows=16 loops=1)
+Buffers: shared read=1
+->  Index Scan using end_quadtree on taxi_quad  (cost=0.54..2816.51 rows=170 width=870) (actual time=98.810..124.843 rows=1524 loops=1)
+Index Cond: (end_point && _st_expand(hotels.geom, '10'::double precision))
+Filter: st_dwithin(hotels.geom, end_point, '10'::double precision, true)
+Rows Removed by Filter: 659
+Buffers: shared hit=48167 read=16982
+->  Hash  (cost=47358.79..47358.79 rows=170 width=13) (actual time=127.538..127.594 rows=4789 loops=1)
+Buckets: 8192 (originally 1024)  Batches: 1 (originally 1)  Memory Usage: 275kB
+Buffers: shared hit=42564 read=21511
+->  Gather  (cost=1220.41..47358.79 rows=170 width=13) (actual time=117.876..127.169 rows=4789 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+Buffers: shared hit=42564 read=21511
+->  Parallel Bitmap Heap Scan on taxi_quad taxi_quad_1  (cost=220.41..46341.79 rows=71 width=13) (actual time=115.424..120.530 rows=1596 loops=3)
+Filter: st_dwithin(start_point, '0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3000'::double precision, true)
+Rows Removed by Filter: 159
+Heap Blocks: exact=3554
+Buffers: shared hit=42564 read=21511
+->  Bitmap Index Scan on start_quadtree  (cost=0.00..220.37 rows=5311 width=0) (actual time=117.398..117.398 rows=5265 loops=1)
+Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3000'::double precision))
+Buffers: shared hit=41979 read=16472
+Planning Time: 0.637 ms
+Execution Time: 257.741 ms
+-------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 4.2.2
+* Test case index Quad tree
+*/
+
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_quad, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_quad.end_point, 10) AND trip_id IN (
+            SELECT trip_id
+            FROM taxi_quad
+            WHERE ST_DWithin(taxi_quad.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3100)
+        )
+
+/**
+Outputs:
+----
+1350
+----
+Query Plan:
+------------------------------------------------------------------------------------------------------------------------------------------------
+Aggregate  (cost=51478.86..51478.87 rows=1 width=32) (actual time=227.705..227.746 rows=1 loops=1)
+Buffers: shared hit=90742 read=38563
+->  Hash Semi Join  (cost=48656.56..51478.72 rows=1 width=825) (actual time=222.153..227.736 rows=5 loops=1)
+Hash Cond: (taxi_quad.trip_id = taxi_quad_1.trip_id)
+Buffers: shared hit=90742 read=38563
+->  Nested Loop  (cost=1.78..2819.46 rows=1705 width=838) (actual time=86.191..111.696 rows=1524 loops=1)
+Buffers: shared hit=48105 read=17045
+->  Limit  (cost=1.24..1.24 rows=1 width=64) (actual time=0.009..0.009 rows=1 loops=1)
+Buffers: shared read=1
+->  Sort  (cost=1.24..1.28 rows=16 width=64) (actual time=0.009..0.009 rows=1 loops=1)
+Sort Key: hotels.popularity DESC
+Sort Method: top-N heapsort  Memory: 25kB
+Buffers: shared read=1
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=64) (actual time=0.005..0.006 rows=16 loops=1)
+Buffers: shared read=1
+->  Index Scan using end_quadtree on taxi_quad  (cost=0.54..2816.51 rows=170 width=870) (actual time=86.180..111.625 rows=1524 loops=1)
+Index Cond: (end_point && _st_expand(hotels.geom, '10'::double precision))
+Filter: st_dwithin(hotels.geom, end_point, '10'::double precision, true)
+Rows Removed by Filter: 659
+Buffers: shared hit=48105 read=17044
+->  Hash  (cost=48652.66..48652.66 rows=170 width=13) (actual time=115.773..115.813 rows=4830 loops=1)
+Buckets: 8192 (originally 1024)  Batches: 1 (originally 1)  Memory Usage: 277kB
+Buffers: shared hit=42637 read=21518
+->  Gather  (cost=1229.56..48652.66 rows=170 width=13) (actual time=106.331..115.399 rows=4830 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+Buffers: shared hit=42637 read=21518
+->  Parallel Bitmap Heap Scan on taxi_quad taxi_quad_1  (cost=229.56..47635.66 rows=71 width=13) (actual time=96.541..101.400 rows=1610 loops=3)
+Filter: st_dwithin(start_point, '0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3100'::double precision, true)
+Rows Removed by Filter: 174
+Heap Blocks: exact=3712
+Buffers: shared hit=42637 read=21518
+->  Bitmap Index Scan on start_quadtree  (cost=0.00..229.52 rows=5464 width=0) (actual time=105.854..105.854 rows=5352 loops=1)
+Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3100'::double precision))
+Buffers: shared hit=42052 read=16399
+Planning Time: 0.811 ms
+Execution Time: 232.575 ms
+------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 4.2.3
+* Test case index Quad tree
+*/
+
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi_quad, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi_quad.end_point, 10) AND trip_id IN (
+            SELECT trip_id
+            FROM taxi_quad
+            WHERE ST_DWithin(taxi_quad.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3150)
+        )
+
+/**
+Outputs:
+----
+1350
+----
+Query Plan:
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Aggregate  (cost=51964.34..51964.35 rows=1 width=32) (actual time=253.240..253.282 rows=1 loops=1)
+Buffers: shared hit=90842 read=38488
+->  Hash Semi Join  (cost=49142.04..51964.20 rows=1 width=825) (actual time=247.392..253.273 rows=5 loops=1)
+Hash Cond: (taxi_quad.trip_id = taxi_quad_1.trip_id)
+Buffers: shared hit=90842 read=38488
+->  Nested Loop  (cost=1.78..2819.46 rows=1705 width=838) (actual time=92.444..119.425 rows=1524 loops=1)
+Buffers: shared hit=48112 read=17038
+->  Limit  (cost=1.24..1.24 rows=1 width=64) (actual time=0.010..0.011 rows=1 loops=1)
+Buffers: shared read=1
+->  Sort  (cost=1.24..1.28 rows=16 width=64) (actual time=0.010..0.010 rows=1 loops=1)
+Sort Key: hotels.popularity DESC
+Sort Method: top-N heapsort  Memory: 25kB
+Buffers: shared read=1
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=64) (actual time=0.005..0.006 rows=16 loops=1)
+Buffers: shared read=1
+->  Index Scan using end_quadtree on taxi_quad  (cost=0.54..2816.51 rows=170 width=870) (actual time=92.432..119.353 rows=1524 loops=1)
+Index Cond: (end_point && _st_expand(hotels.geom, '10'::double precision))
+Filter: st_dwithin(hotels.geom, end_point, '10'::double precision, true)
+Rows Removed by Filter: 659
+Buffers: shared hit=48112 read=17037
+->  Hash  (cost=49138.14..49138.14 rows=170 width=13) (actual time=133.570..133.611 rows=4871 loops=1)
+Buckets: 8192 (originally 1024)  Batches: 1 (originally 1)  Memory Usage: 279kB
+Buffers: shared hit=42730 read=21450
+->  Gather  (cost=1229.99..49138.14 rows=170 width=13) (actual time=123.597..133.205 rows=4871 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+Buffers: shared hit=42730 read=21450
+->  Parallel Bitmap Heap Scan on taxi_quad taxi_quad_1  (cost=229.99..48121.14 rows=71 width=13) (actual time=120.962..126.425 rows=1624 loops=3)
+Filter: st_dwithin(start_point, '0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3150'::double precision, true)
+Rows Removed by Filter: 170
+Heap Blocks: exact=3510
+Buffers: shared hit=42730 read=21450
+->  Bitmap Index Scan on start_quadtree  (cost=0.00..229.95 rows=5522 width=0) (actual time=112.010..112.010 rows=5381 loops=1)
+Index Cond: (start_point && _st_expand('0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3150'::double precision))
+Buffers: shared hit=42145 read=16306
+Planning Time: 0.838 ms
+Execution Time: 259.633 ms
+-------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 4.3.1
+* Test case index No index
+*/
+
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi.end_point, 10) AND trip_id IN (
+            SELECT trip_id
+            FROM taxi
+            WHERE ST_DWithin(taxi.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3000)
+        )
+
+/**
+Outputs:
+----
+1350
+----
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------
+Aggregate  (cost=9282507.23..9282507.24 rows=1 width=32) (actual time=777.025..779.826 rows=1 loops=1)
+Buffers: shared hit=1473 read=403470
+->  Nested Loop  (cost=9069439.63..9282507.10 rows=1 width=820) (actual time=735.948..779.809 rows=5 loops=1)
+Join Filter: st_dwithin(hotels.geom, taxi.end_point, '10'::double precision, true)
+Rows Removed by Join Filter: 4784
+Buffers: shared hit=1473 read=403470
+->  Limit  (cost=1.24..1.24 rows=1 width=64) (actual time=0.009..0.010 rows=1 loops=1)
+Buffers: shared hit=1
+->  Sort  (cost=1.24..1.28 rows=16 width=64) (actual time=0.009..0.009 rows=1 loops=1)
+Sort Key: hotels.popularity DESC
+Sort Method: top-N heapsort  Memory: 25kB
+Buffers: shared hit=1
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=64) (actual time=0.003..0.004 rows=16 loops=1)
+Buffers: shared hit=1
+->  Gather  (cost=9069438.39..9280379.15 rows=170 width=852) (actual time=599.131..776.711 rows=4789 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+Buffers: shared hit=1472 read=403470
+->  Parallel Hash Semi Join  (cost=9068438.39..9279362.15 rows=71 width=852) (actual time=593.084..769.479 rows=1596 loops=3)
+Hash Cond: (taxi.trip_id = taxi_1.trip_id)
+Buffers: shared hit=1472 read=403470
+->  Parallel Seq Scan on taxi  (cost=0.00..209062.50 rows=708750 width=865) (actual time=0.007..128.139 rows=568256 loops=3)
+Buffers: shared hit=288 read=201687
+->  Parallel Hash  (cost=9068437.50..9068437.50 rows=71 width=13) (actual time=592.759..592.759 rows=1596 loops=3)
+Buckets: 4096 (originally 1024)  Batches: 1 (originally 1)  Memory Usage: 344kB
+Buffers: shared hit=1018 read=201783
+->  Parallel Seq Scan on taxi taxi_1  (cost=0.00..9068437.50 rows=71 width=13) (actual time=4.237..509.047 rows=1596 loops=3)
+Filter: st_dwithin(start_point, '0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3000'::double precision, true)
+Rows Removed by Filter: 566660
+Buffers: shared hit=1018 read=201783
+Planning Time: 1.817 ms
+Execution Time: 779.849 ms
+--------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 4.3.2
+* Test case index No index
+*/
+
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi.end_point, 10) AND trip_id IN (
+            SELECT trip_id
+            FROM taxi
+            WHERE ST_DWithin(taxi.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3100)
+        )
+
+/**
+Outputs:
+----
+1350
+----
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------
+Aggregate  (cost=9282507.23..9282507.24 rows=1 width=32) (actual time=806.527..808.971 rows=1 loops=1)
+Buffers: shared hit=2241 read=402702
+->  Nested Loop  (cost=9069439.63..9282507.10 rows=1 width=820) (actual time=763.389..808.953 rows=5 loops=1)
+Join Filter: st_dwithin(hotels.geom, taxi.end_point, '10'::double precision, true)
+Rows Removed by Join Filter: 4825
+Buffers: shared hit=2241 read=402702
+->  Limit  (cost=1.24..1.24 rows=1 width=64) (actual time=0.011..0.012 rows=1 loops=1)
+Buffers: shared hit=1
+->  Sort  (cost=1.24..1.28 rows=16 width=64) (actual time=0.011..0.011 rows=1 loops=1)
+Sort Key: hotels.popularity DESC
+Sort Method: top-N heapsort  Memory: 25kB
+Buffers: shared hit=1
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=64) (actual time=0.003..0.004 rows=16 loops=1)
+Buffers: shared hit=1
+->  Gather  (cost=9069438.39..9280379.15 rows=170 width=852) (actual time=621.630..805.788 rows=4830 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+Buffers: shared hit=2240 read=402702
+->  Parallel Hash Semi Join  (cost=9068438.39..9279362.15 rows=71 width=852) (actual time=615.763..798.946 rows=1610 loops=3)
+Hash Cond: (taxi.trip_id = taxi_1.trip_id)
+Buffers: shared hit=2240 read=402702
+->  Parallel Seq Scan on taxi  (cost=0.00..209062.50 rows=708750 width=865) (actual time=0.008..134.077 rows=568256 loops=3)
+Buffers: shared hit=672 read=201303
+->  Parallel Hash  (cost=9068437.50..9068437.50 rows=71 width=13) (actual time=615.425..615.425 rows=1610 loops=3)
+Buckets: 4096 (originally 1024)  Batches: 1 (originally 1)  Memory Usage: 312kB
+Buffers: shared hit=1402 read=201399
+->  Parallel Seq Scan on taxi taxi_1  (cost=0.00..9068437.50 rows=71 width=13) (actual time=4.197..507.556 rows=1610 loops=3)
+Filter: st_dwithin(start_point, '0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3100'::double precision, true)
+Rows Removed by Filter: 566646
+Buffers: shared hit=1402 read=201399
+Planning Time: 0.183 ms
+Execution Time: 808.990 ms
+--------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/**
+* Test Case 4.3.3
+* Test case index No index
+*/
+
+        SElECT AVG(ST_NumPoints(polyline::geometry)) * 15 AS time FROM taxi, (
+            SELECT geom FROM hotels
+            ORDER BY popularity DESC
+            LIMIT 1
+        ) AS subquery
+        WHERE ST_DWithin(subquery.geom, taxi.end_point, 10) AND trip_id IN (
+            SELECT trip_id
+            FROM taxi
+            WHERE ST_DWithin(taxi.start_point, ST_GeogFromText('SRID=4326;POINT(-8.68 41.25)'), 3150)
+        )
+
+/**
+Outputs:
+----
+1350
+----
+Query Plan:
+--------------------------------------------------------------------------------------------------------------------------------
+Aggregate  (cost=9282507.23..9282507.24 rows=1 width=32) (actual time=769.244..771.788 rows=1 loops=1)
+Buffers: shared hit=3009 read=401934
+->  Nested Loop  (cost=9069439.63..9282507.10 rows=1 width=820) (actual time=728.347..771.769 rows=5 loops=1)
+Join Filter: st_dwithin(hotels.geom, taxi.end_point, '10'::double precision, true)
+Rows Removed by Join Filter: 4866
+Buffers: shared hit=3009 read=401934
+->  Limit  (cost=1.24..1.24 rows=1 width=64) (actual time=0.012..0.013 rows=1 loops=1)
+Buffers: shared hit=1
+->  Sort  (cost=1.24..1.28 rows=16 width=64) (actual time=0.012..0.012 rows=1 loops=1)
+Sort Key: hotels.popularity DESC
+Sort Method: top-N heapsort  Memory: 25kB
+Buffers: shared hit=1
+->  Seq Scan on hotels  (cost=0.00..1.16 rows=16 width=64) (actual time=0.006..0.007 rows=16 loops=1)
+Buffers: shared hit=1
+->  Gather  (cost=9069438.39..9280379.15 rows=170 width=852) (actual time=592.318..768.636 rows=4871 loops=1)
+Workers Planned: 2
+Workers Launched: 2
+Buffers: shared hit=3008 read=401934
+->  Parallel Hash Semi Join  (cost=9068438.39..9279362.15 rows=71 width=852) (actual time=586.551..761.970 rows=1624 loops=3)
+Hash Cond: (taxi.trip_id = taxi_1.trip_id)
+Buffers: shared hit=3008 read=401934
+->  Parallel Seq Scan on taxi  (cost=0.00..209062.50 rows=708750 width=865) (actual time=0.011..126.729 rows=568256 loops=3)
+Buffers: shared hit=1056 read=200919
+->  Parallel Hash  (cost=9068437.50..9068437.50 rows=71 width=13) (actual time=586.196..586.196 rows=1624 loops=3)
+Buckets: 4096 (originally 1024)  Batches: 1 (originally 1)  Memory Usage: 344kB
+Buffers: shared hit=1786 read=201015
+->  Parallel Seq Scan on taxi taxi_1  (cost=0.00..9068437.50 rows=71 width=13) (actual time=3.919..509.343 rows=1624 loops=3)
+Filter: st_dwithin(start_point, '0101000020E61000005C8FC2F5285C21C00000000000A04440'::geography, '3150'::double precision, true)
+Rows Removed by Filter: 566633
+Buffers: shared hit=1786 read=201015
+Planning Time: 0.193 ms
+Execution Time: 771.817 ms
+--------------------------------------------------------------------------------------------------------------------------------
 */

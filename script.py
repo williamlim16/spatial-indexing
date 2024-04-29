@@ -44,6 +44,8 @@ def gen_report(cursor):
         generate_report(cursor=cursor, case=2, repetition=repetition)
     elif selection == 3:
         generate_report(cursor=cursor, case=3, repetition=repetition)
+    elif selection == 4:
+        generate_report(cursor=cursor, case=4, repetition=repetition)
     else:
         print("Invalid option!")
         system("clear")
@@ -52,7 +54,11 @@ def gen_report(cursor):
 
 def perf_testing(cursor):
     system("clear")
-    selection = int(input("Please enter your selection number: "))
+    selection = input("Please enter your case: ")
+    if selection:
+        selection = int(selection)
+    else:
+        selection = None
     repetition = int(input("Please input repetition needed: "))
     if selection == 0 or selection == None:
         performance_test(cursor, case=None, repetition=repetition)
@@ -62,6 +68,8 @@ def perf_testing(cursor):
         performance_test(cursor, case=2, repetition=repetition)
     elif selection == 3:
         performance_test(cursor, case=3, repetition=repetition)
+    elif selection == 4:
+        performance_test(cursor, case=4, repetition=repetition)
     else:
         print("Invalid option!")
     print("Performance testing")
